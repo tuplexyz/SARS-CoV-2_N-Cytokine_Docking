@@ -1,5 +1,4 @@
 
-
 def write_run_params(ambig_tbl = None,
                      haddock_dir = "/root/haddock/haddock2.4-2021-01/",
                      n_comp = 2,
