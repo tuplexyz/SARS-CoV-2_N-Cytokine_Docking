@@ -18,7 +18,7 @@ N_residues = [1, 9, 19, 20, 23, 24, 25, 26, 30, 33, 37, 38, 39, 44, 58, 67, 69, 
 362, 364, 376, 379, 381, 382, 384, 391, 413, 416, 417]
 '''
 
-cytokine_residues = find_random_surface_residues(file = cytokine_file, percentage = 0.25)
+cytokine_residues = find_random_surface_residues(file = cytokine_file, percentage = 1.0)
 '''
 cytokine_residues = [1, 3, 11, 12, 20, 34, 35, 47, 49, 50, 53, 55, 61, 63, 64, 65, 67]
 '''
