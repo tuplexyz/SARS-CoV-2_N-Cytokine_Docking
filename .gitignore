@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# HADDOCK Files
+manual_tests/*/run1/*
