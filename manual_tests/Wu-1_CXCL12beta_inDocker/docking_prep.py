@@ -8,7 +8,7 @@ from helper_scripts.make_run_params import write_run_params
 N_file = 'C:\\Users\\Colby\\Documents\\GitHub\\SARS-CoV-2_N-Cytokine_Docking\\manual_tests\\Wu-1_CXCL12beta_inDocker\\SARS-CoV-2_N_Wu1.pdb'
 cytokine_file = 'C:\\Users\\Colby\\Documents\\GitHub\\SARS-CoV-2_N-Cytokine_Docking\\manual_tests\\Wu-1_CXCL12beta_inDocker\\CXCL12beta.pdb'
 
-N_residues = find_random_surface_residues(file = N_file, percentage = 0.25)
+N_residues = find_random_surface_residues(file = N_file, percentage = 0.5)
 '''
 N_residues = [1, 9, 19, 20, 23, 24, 25, 26, 30, 33, 37, 38, 39, 44, 58, 67, 69, 70, 75, 98, 99, 
 103, 125, 129, 131, 132, 135, 136, 140, 141, 143, 144, 146, 151, 155, 163, 164, 167, 
@@ -20,7 +20,12 @@ N_residues = [1, 9, 19, 20, 23, 24, 25, 26, 30, 33, 37, 38, 39, 44, 58, 67, 69, 
 
 cytokine_residues = find_random_surface_residues(file = cytokine_file, percentage = 1.0)
 '''
-cytokine_residues = [1, 3, 11, 12, 20, 34, 35, 47, 49, 50, 53, 55, 61, 63, 64, 65, 67]
+cytokine_residues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
+                    14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 
+                    25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 
+                    36, 37, 39, 41, 42, 43, 44, 45, 46, 47, 48, 
+                    49, 50, 52, 53, 54, 55, 56, 57, 59, 60, 61, 
+                    62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
 '''
 
 ## Write our AIR file
