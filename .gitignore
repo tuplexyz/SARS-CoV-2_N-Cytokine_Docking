@@ -129,4 +129,22 @@ dmypy.json
 .pyre/
 
 # HADDOCK Files
-manual_tests/*/run1/*
+manual_tests/*/run1/
+manual_tests/*/ana_scripts/*
+manual_tests/*/run1/begin/*
+manual_tests/*/run1/begin-aa/*
+manual_tests/*/run1/tools/*
+manual_tests/*/run1/data/*
+manual_tests/*/run1/protocols/*
+manual_tests/*/run1/toppar/*
+manual_tests/*/run1/*.inp
+manual_tests/*/run1/*.job
+manual_tests/*/run1/*.out.gz
+manual_tests/*/run1/structures/it0/*
+manual_tests/*/run1/structures/it0/contacts/*
+manual_tests/*/run1/structures/it1/contacts/*
+manual_tests/*/run1/structures/it1/water/contacts/*
+manual_tests/*/run1/structures/it1/analysis/*
+manual_tests/*/run1/structures/it1/water/analysis/*
+manual_tests/*/run1/structures/it1/toppar/*
+manual_tests/*/run1/structures/it1/*.seed
