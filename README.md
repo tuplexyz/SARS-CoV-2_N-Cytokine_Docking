@@ -5,3 +5,11 @@
 ## Running HADDOCK in Docker
 ```sh
 ```
+
+
+
+## HPC Runs
+
+```bash
+singularity pull haddock.sif docker://cford38/haddock:2.4
+```
