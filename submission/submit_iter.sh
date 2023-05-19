@@ -6,7 +6,7 @@
 #SBATCH --constraint=skylake
 #SBATCH --mem=300gb
 #SBATCH --time=5:00:00
-
+#
 # singularity exec haddock.sif python3 inference.py \
 #     --complex_path $2 \
 #     --complex_name $1 \
@@ -16,8 +16,8 @@
 #     --batch_size 10 \
 #     --actual_steps 18 \
 #     --no_final_step_noise
-
+#
 # singularity run $SINGULARITY_CONTAINER_HOME/haddock.sif
-
+#
 cd $2
 ./run-example.csh
