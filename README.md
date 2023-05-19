@@ -6,10 +6,12 @@ Large scale, _in silico_ interaction analyses of SARS-CoV-2 nucleocapsid protein
 
 ## HPC Runs
 
-### Docker
+### Local Docker
 ```bash
+## Run from `docker run` command
 docker run -ti -v C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\cluster_tests:/inputs haddock2_4 /inputs/SARS-CoV-2_N_Wu1__CXCL12alpha/run-docking.csh /inputs/SARS-CoV-2_N_Wu1__CXCL12alpha
 
+## Run interactively in the container's terminal
 docker run -v C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\cluster_tests:/inputs --name haddock2_4_test1 -d haddock2_4
 docker exec -it haddock2_4_test1 /bin/tcsh
 ```
