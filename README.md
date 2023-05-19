@@ -23,3 +23,17 @@ singularity pull haddock.sif docker://cford38/haddock:2.4
 cd submission
 bash submist_dist.sh
 ```
+
+```bash
+LLsub -i -N 1
+
+singularity exec haddock.sif seqer_shared/N_cytokine_docking/cluster_tests/SARS-CoV-2_N_Wu1__CXCL12beta/run-docking.csh
+
+singularity run -B N_cytokine_docking/cluster_tests/:/experiments haddock.sif /experiments/SARS-CoV-2_N_Wu1__CXCL12beta/run-docking.csh /experiments/SARS-CoV-2_N_Wu1__CXCL12beta/
+
+singularity run -B N_cytokine_docking/cluster_tests/:/inputs haddock.sif /root/haddock/haddock2.4-2021-01/examples/protein-protein/run-example.csh
+```
+
+
+
+
