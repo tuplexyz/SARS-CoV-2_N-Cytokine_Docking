@@ -1,7 +1,8 @@
 #!/bin/csh
 cd $1
 # source ../../haddock_configure.csh
-source $HOME/haddock/haddock2.4-2021-01/haddock_configure.csh
+# source $HOME/haddock/haddock2.4-2021-01/haddock_configure.csh
+source /root/haddock/haddock2.4-2021-01/haddock_configure.csh
 echo "==========================================================="
 echo "==========================================================="
 echo " RUNNING: SARS-CoV-2 N <> CYTOKINE DOCKING STARTED         "
