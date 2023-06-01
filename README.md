@@ -21,7 +21,7 @@ docker exec -it haddock2_4_test1 /bin/tcsh
 singularity pull haddock.sif docker://cford38/haddock:2.4
 
 cd submission
-bash submist_dist.sh
+bash submit_dist.sh
 ```
 
 ```bash
