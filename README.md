@@ -1,6 +1,6 @@
 # SARS-CoV-2 Nucleocapsid-Cytokine Docking Analyses
 
-<h3 align="right">Tuple, LLC and MIT Lincoln Labs</h3>
+<h3 align="right">Tuple and MIT Lincoln Labs</h3>
 
 Large scale, _in silico_ interaction analyses of SARS-CoV-2 nucleocapsid protein variants against human cytokines.
 
@@ -53,7 +53,7 @@ Now, make sure the state partition is bound inside the container:
 singularity run -B N_cytokine_docking/cluster_tests/:/experiments,/state/partition1/user/seqer:/state/partition1/user/seqer haddock.sif /experiments/SARS-CoV-2_N_Wu1__CXCL12beta/run-docking.csh /experiments/SARS-CoV-2_N_Wu1__CXCL12beta/
 ```
 Also note, the default time limit of 30 min for interactive sessions is not enough for HADDOCK to finish.  
-We need to put these into a mapper script (and possibly reducer script to cleanup the run files.
+We need to put these into a mapper script (and possibly reducer script to cleanup the run files).
 
 ### UNCC HPC Tests
 ```bash
