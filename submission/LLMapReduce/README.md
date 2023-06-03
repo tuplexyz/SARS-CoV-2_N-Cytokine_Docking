@@ -49,3 +49,13 @@ and another subdir for JOBID#2 for processes 2 and 3, on compute node d-19-5-4:
 MAPRED.21818/logs/p2-p3_d-19-5-4/llmap.log-2  
 MAPRED.21818/logs/p2-p3_d-19-5-4/llmap.log-3  
 ``` 
+### Benchmarking Notes  
+One instance of HADDOCK seems to like using about 24 cores, that means about 2 processes per 48-core node is appropriate.  
+Tried some benchmarking (wall time)  
+1 HADDOCK instance on 1 xeon-p8 node = 43 minutes  
+2 HADDOCK instances on 1 xeon-p8 node = 41 minutes  
+4 HADDOCK instances on 1 xeon-p8 node = 3 hours  
+
+RAM is negligible.  GPU is not used.  
+
+xeon-p8 specific specs: 2x 24 physical core Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz
