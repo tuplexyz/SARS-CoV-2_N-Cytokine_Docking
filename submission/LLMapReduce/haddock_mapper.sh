@@ -3,7 +3,6 @@
 #
 #     Args:
 #        $1 (str): relative path to experiment (e.g. SARS-CoV-2_N_Wu1__CXCL12beta/ )
-#        dbwrite (TYPE, optional): DESCRIPTION. Defaults to False.
 #
 #    Returns:
 #        Outputs from HADDOCK will appear in the run1 folder under the corresponding experiment.
