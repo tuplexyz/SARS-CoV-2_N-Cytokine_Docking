@@ -9,16 +9,29 @@ Edit the experiment.list and remove the last line (ls will list the experiment.l
 On the SuperCloud run the following command:  
 `LLMapReduce --mapper=haddock_mapper.sh --input=experiment.list --output=results --keep=true --cpuType=xeon-p8 --np=[2,2,24]`  
 
-Triples mode explanation [1,4,12]:  
-2 = node / slurm job  
-2 = 2 processes/tasks per node  
-2 * 2 * 24 = 48 CPUs per node (max for the xeon-p8 node)  
+### LLMapReduce Explanation  
+[First, Second, Third]:  
+First - Number of compute nodes, also equivalent to number of slurm jobs (and JOBIDs).
+Second - Number of processes per node.
+Third - Number of threads per process.
 
+**Example `--np=[2,2,24]`**
+In this case say we have **4 experiments** we need to run, we need a total of **4 processes**.
 One submission of LLMapReduce results in one ARRAY_JOB.  
-The first number of triples determines the number of unique slurm jobs (and JOBIDs)  
-For example:  
+
+Rules:  
+First x Second <= number of experiments.  
+Second x Third = number of physical cores on the compute node. (ie. 48 for xeon-p8)
+
+2 = compute nodes / slurm jobs  
+2 = 2 processes per node  
+2 * 24 = 48 cores per node
+
+Results in:  
 ARRAY_JOB = 22945675  
 JOBID = 22945675_1 and 22945675_2  
+
+### Debugging and Logging  
 
 The `--keep-true` flag above keeps the MAPRED folder in the format of MAPRED.#####  
 The number in the directory name is random, but you can check the ARRAY_JOB it came from:
