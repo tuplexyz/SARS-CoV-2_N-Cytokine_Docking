@@ -149,3 +149,4 @@ manual_tests/*/run1/structures/it1/water/analysis/*
 manual_tests/*/run1/structures/it1/toppar/*
 manual_tests/*/run1/structures/it1/*.seed
 # cluster_tests/*
+.DS_Store
