@@ -14,7 +14,7 @@ patch -p0 -i ../run.cns.patch >&/dev/null
 haddock2.4 >&haddock.out
 cd ..
 ./ana_scripts/run_all.csh run1 >&/dev/null
-../results-stats.csh run1
+# ../results-stats.csh run1
 echo "==========================================================="
 echo "==========================================================="
 echo " DONE: SARS-CoV-2 N <> CYTOKINE DOCKING COMPLETED          "
