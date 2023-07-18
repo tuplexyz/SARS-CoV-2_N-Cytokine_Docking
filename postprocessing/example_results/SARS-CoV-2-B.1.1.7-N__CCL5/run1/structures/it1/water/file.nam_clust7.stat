@@ -1,0 +1,5 @@
+#Structure rmsd_all i-RMSD Einter Enb Evdw+0.1Eelec Evdw Eelec Eair Ecdih Ecoup Esani Evean Edani #NOEviol #Dihedviol #Coupviol #Veanviol #Daniviol BSA
+SARS-CoV-2-B.1.1.7-N__CCL5_58w.pdb SARS-CoV-2-B.1.1.7-N__CCL5_58w.pdb 2476.15 -97.1152 -74.6303 -224.849 2775.63 0 0 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_58w.pdb 43 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_58w.pdb 2219.43 
+SARS-CoV-2-B.1.1.7-N__CCL5_54w.pdb SARS-CoV-2-B.1.1.7-N__CCL5_54w.pdb 2643.89 -80.4433 -54.9209 -255.224 2954.04 0 0 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_54w.pdb 47 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_54w.pdb 2084.59 
+SARS-CoV-2-B.1.1.7-N__CCL5_49w.pdb SARS-CoV-2-B.1.1.7-N__CCL5_49w.pdb 2708.66 -70.8871 -47.4456 -234.415 2990.53 0 0 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_49w.pdb 47 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_49w.pdb 1871.26 
+SARS-CoV-2-B.1.1.7-N__CCL5_185w.pdb SARS-CoV-2-B.1.1.7-N__CCL5_185w.pdb 3008.03 -78.0778 -54.2333 -238.445 3300.71 0 0 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_185w.pdb 51 0 0 0 SARS-CoV-2-B.1.1.7-N__CCL5_185w.pdb 1867.55 

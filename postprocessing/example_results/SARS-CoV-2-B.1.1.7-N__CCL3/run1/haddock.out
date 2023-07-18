@@ -1,0 +1,28 @@
+
+##############################################################################
+#                                                                            #
+# Starting HADDOCK2.4                                                        #
+#                                                                            #
+#         N-components version of HADDOCK (current maximum is 20)            #
+#                                                                            #
+#   Copyright 2003-2020 Alexandre Bonvin, Utrecht University.                #
+#   Originally adapted from Aria 1.2 from Nilges and Linge, EMBL.            #
+#   All rights reserved.                                                     #
+#   This code is part of the HADDOCK software and governed by its            #
+#   license. Please see the LICENSE file that should have been included      #
+#   as part of this package.                                                 #
+#                                                                            #
+##############################################################################
+    
+Starting HADDOCK on: 2023-07-12 07:05:42
+ 
+HADDOCK version:   2.4 - January 2021 release
+Python version: 2.7.6 (default, Nov 13 2018, 12:45:42) 
+[GCC 4.8.4]
+there is no run.cns OR run.param in your current directory.
+=> HADDOCK stopped
+##############################################################################
+Finishing HADDOCK on:  2023-07-12 07:05:42
+Au revoir.
+Tot ziens.
+Bye bye.

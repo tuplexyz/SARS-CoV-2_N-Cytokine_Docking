@@ -1,0 +1,19 @@
+module(filenames;)
+set message off echo off end
+evaluate ($count = 1)
+while ($count le 2000) loop main
+   evaluate (&filenames.bestfile_$count = "")
+   evaluate ($count = $count + 1)
+end loop main
+set message on echo on end
+evaluate (&filenames.bestfile_1="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_8w.pdb")
+evaluate (&filenames.bestfile_2="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_74w.pdb")
+evaluate (&filenames.bestfile_3="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_15w.pdb")
+evaluate (&filenames.bestfile_4="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_92w.pdb")
+evaluate (&filenames.bestfile_5="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_6w.pdb")
+evaluate (&filenames.bestfile_6="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_168w.pdb")
+evaluate (&filenames.bestfile_7="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_63w.pdb")
+evaluate (&filenames.bestfile_8="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_165w.pdb")
+evaluate (&filenames.bestfile_9="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_22w.pdb")
+evaluate (&filenames.bestfile_10="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_39w.pdb")
+evaluate (&filenames.bestfile_11="PREVIT:SARS-CoV-2-B.1.1.7-N__CCL3_64w.pdb")
