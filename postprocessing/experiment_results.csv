@@ -1,0 +1,5 @@
+,experiment_name,best_cluster,best_pdb_path,Nstruc,Einter,Einter_sd,Enb,Enb_sd,Evdw+0.1Eelec,Evdw+0.1Eelec_sd,Evdw,Evdw_sd,Eelec,Eelec_sd,Eair,Eair_sd
+0,SARS-CoV-2-B.1.1.7-N__CCL7,6,./example_results/SARS-CoV-2-B.1.1.7-N__CCL7/run1/structures/it1/water/SARS-CoV-2-B.1.1.7-N__CCL7_146w.pdb,4,2471.72,188.72,-369.63,21.11,-105.72,6.64,-76.4,9.05,-293.23,28.69,2841.35,172.45
+1,SARS-CoV-2-B.1.1.7-N__CXCL12beta,5,./example_results/SARS-CoV-2-B.1.1.7-N__CXCL12beta/run1/structures/it1/water/SARS-CoV-2-B.1.1.7-N__CXCL12beta_95w.pdb,4,2475.97,83.07,-410.99,36.3,-104.95,7.53,-70.94,4.87,-340.05,32.72,2886.96,104.28
+2,SARS-CoV-2-B.1.1.7-N__CCL3,4,./example_results/SARS-CoV-2-B.1.1.7-N__CCL3/run1/structures/it1/water/SARS-CoV-2-B.1.1.7-N__CCL3_87w.pdb,5,2574.92,136.34,-287.9,68.7,-97.67,18.76,-76.53,14.92,-211.37,59.69,2862.82,77.62
+3,SARS-CoV-2-B.1.1.7-N__CCL5,1,./example_results/SARS-CoV-2-B.1.1.7-N__CCL5/run1/structures/it1/water/SARS-CoV-2-B.1.1.7-N__CCL5_129w.pdb,8,2564.72,186.78,-362.12,35.33,-115.48,11.49,-88.08,11.01,-274.04,33.67,2926.84,181.06
