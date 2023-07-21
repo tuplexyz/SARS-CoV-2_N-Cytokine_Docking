@@ -68,5 +68,7 @@ singularity run -B cluster_tests/:/experiments haddock.sif /experiments/SARS-CoV
 ```
 
 
+## Postprocessing
 
+Once all experiments have completed, running the [postprocessing/postprocessing.ipynb](postprocessing/postprocessing.ipynb) on the results folder will grab the metrics of the best-performing cluster and also find the best PDB file of the complex. This will output a .csv file of the metrics for the experiments.
 
