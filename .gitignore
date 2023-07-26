@@ -151,3 +151,4 @@ manual_tests/*/run1/structures/it1/*.seed
 # cluster_tests/*
 .DS_Store
 postprocessing/prodigy/
+postprocessing/prodigy.zip
