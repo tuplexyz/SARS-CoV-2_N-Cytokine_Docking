@@ -152,3 +152,4 @@ manual_tests/*/run1/structures/it1/*.seed
 .DS_Store
 postprocessing/prodigy/
 postprocessing/prodigy.zip
+postprocessing/.Rhistory
