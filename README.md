@@ -72,3 +72,11 @@ singularity run -B cluster_tests/:/experiments haddock.sif /experiments/SARS-CoV
 
 Once all experiments have completed, running the [postprocessing/postprocessing.ipynb](postprocessing/postprocessing.ipynb) notebook on the results folder will grab the metrics of the best-performing cluster (and also find the best PDB file of the cluster). This will output a single .csv file of the metrics for the experiments.
 
+## Data Explorer App
+
+We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
+
+```sh
+cd app/
+streamlit run Home.py
+```
