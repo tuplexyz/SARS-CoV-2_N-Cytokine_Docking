@@ -1,0 +1,6 @@
+The analysis was run using raxmlGUI 2.0 (version 2.0.7) as follows:
+Analysis: ML + rapid bootstrap
+Binary: raxmlHPC-PTHREADS-SSE3.exe version 8.2.12
+Results saved to: C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\tree
+RAxML was called with these arguments:
+1.) -T 10 -f a -x 1337 -p 1337 -N 100 -m PROTGAMMAIVTF -O -o OC43-N_A -n N-Proteins_aligned.tre -s "C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta" -w "C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\tree"

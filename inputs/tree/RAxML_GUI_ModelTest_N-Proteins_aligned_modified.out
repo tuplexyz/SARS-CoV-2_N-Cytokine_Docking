@@ -1,0 +1,177 @@
+--------------------------------------------------------------------------------
+ModelTest-NG v0.1.7
+
+Input data:
+  MSA:        C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta
+  Tree:       Maximum parsimony
+    file:           -
+  #taxa:            17
+  #sites:           485
+  #patterns:        353
+  Max. thread mem:  13 MB
+
+Output:
+  Log:           C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\RAxML_GUI_ModelTest_N-Proteins_aligned_modified.log
+  Starting tree: C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\RAxML_GUI_ModelTest_N-Proteins_aligned_modified.tree
+  Results:       C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\RAxML_GUI_ModelTest_N-Proteins_aligned_modified.out
+
+Selection options:
+  # protein matrices: 19
+  # protein models:   152
+  include model parameters:
+    Uniform:         true
+    p-inv (+I):      true
+    gamma (+G):      true
+    both (+I+G):     true
+    free rates (+R): false
+    fixed freqs:     true
+    estimated freqs: false
+    #categories:     4
+  gamma rates mode:   mean
+  asc bias:           none
+  epsilon (opt):      0.01
+  epsilon (par):      0.05
+  keep branches:      false
+
+Additional options:
+  verbosity:        very low
+  threads:          2/24
+  RNG seed:         12345
+  subtree repeats:  enabled
+--------------------------------------------------------------------------------
+
+BIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  VT                 0     -3421.6153      7034.9392         0.0000    0.8297
+       2  VT+I               1     -3420.7801      7039.4529         4.5137    0.0869
+       3  VT+G4              1     -3420.9043      7039.7015         4.7622    0.0767
+       4  VT+I+G4            2     -3420.8105      7045.6979        10.7586    0.0038
+       5  WAG                0     -3427.7669      7047.2423        12.3031    0.0018
+       6  WAG+G4             1     -3425.8246      7049.5419        14.6027    0.0006
+       7  WAG+I              1     -3426.2786      7050.4499        15.5107    0.0004
+       8  JTT-DCMUT+G4       1     -3427.8258      7053.5444        18.6051    0.0001
+       9  JTT+G4             1     -3428.2913      7054.4753        19.5361    0.0000
+      10  JTT-DCMUT+I        1     -3428.8351      7055.5629        20.6237    0.0000
+--------------------------------------------------------------------------------
+Best model according to BIC
+---------------------------
+Model:              VT
+lnL:                -3421.6153
+Frequencies:        0.0771 0.0501 0.0462 0.0538 0.0145 0.0409 0.0634 0.0656 0.0219 0.0592 0.0976 0.0592 0.0221 0.0414 0.0477 0.0707 0.0568 0.0127 0.0324 0.0669
+Inv. sites prop:    -
+Gamma shape:        -
+Score:              7034.9392
+Weight:             0.8297
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.0873
+Gamma:              0.0774
+Gamma-Inv:          0.0039
+Frequencies:        0.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.0504
+Alpha:              7.2705
+Alpha-P.Inv:        13.9667
+P.Inv-Alpha:        0.0247
+Frequencies:        0.0861 0.0690 0.0548 0.0560 0.0003 0.0821 0.0292 0.1004 0.0101 0.0334 0.0645 0.0742 0.0170 0.0318 0.0676 0.0868 0.0750 0.0121 0.0268 0.0227 
+
+Commands:
+  > phyml  -i C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -d aa -m VT -f m -v 0 -a 0 -c 1 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m PROTGAMMAVT -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta --model VT
+  > paup -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta
+  > iqtree -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m VT
+
+AIC       model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  VT+I+F            20     -3387.7879      6877.5759         0.0000    0.2860
+       2  VT+G4+F           20     -3388.2822      6878.5644         0.9885    0.1745
+       3  WAG+G4+F          20     -3388.3853      6878.7707         1.1948    0.1574
+       4  WAG+I+F           20     -3388.6323      6879.2646         1.6887    0.1230
+       5  VT+I+G4+F         21     -3387.7958      6879.5916         2.0157    0.1044
+       6  VT+F              19     -3390.0358      6880.0716         2.4957    0.0821
+       7  WAG+I+G4+F        21     -3388.2809      6880.5618         2.9859    0.0643
+       8  WAG+F             19     -3392.5890      6885.1780         7.6021    0.0064
+       9  LG+G4+F           20     -3393.5435      6889.0870        11.5111    0.0009
+      10  LG+I+G4+F         21     -3393.4881      6890.9762        13.4003    0.0004
+--------------------------------------------------------------------------------
+Best model according to AIC
+---------------------------
+Model:              VT+I+F
+lnL:                -3387.7879
+Frequencies:        0.0861 0.0690 0.0548 0.0560 0.0003 0.0821 0.0292 0.1004 0.0101 0.0334 0.0645 0.0742 0.0170 0.0318 0.0676 0.0868 0.0750 0.0121 0.0268 0.0227
+Inv. sites prop:    0.0757
+Gamma shape:        -
+Score:              6877.5759
+Weight:             0.2860
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.4093
+Gamma:              0.3330
+Gamma-Inv:          0.1691
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.0802
+Alpha:              3.6158
+Alpha-P.Inv:        59.0922
+P.Inv-Alpha:        0.0520
+Frequencies:        0.0861 0.0690 0.0548 0.0560 0.0003 0.0821 0.0292 0.1004 0.0101 0.0334 0.0645 0.0742 0.0170 0.0318 0.0676 0.0868 0.0750 0.0121 0.0268 0.0227 
+
+Commands:
+  > phyml  -i C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -d aa -m VT -f e -v e -a 0 -c 1 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m PROTGAMMAIVTF -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta --model VT+I+F
+  > paup -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta
+  > iqtree -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m VT+I+F
+
+AICc      model              K            lnL          score          delta    weight
+--------------------------------------------------------------------------------
+       1  VT+I+F            20     -3387.7879      6889.5759         0.0000    0.2705
+       2  VT+G4+F           20     -3388.2822      6890.5644         0.9885    0.1650
+       3  WAG+G4+F          20     -3388.3853      6890.7707         1.1948    0.1488
+       4  VT+F              19     -3390.0358      6891.0716         1.4957    0.1281
+       5  WAG+I+F           20     -3388.6323      6891.2646         1.6887    0.1163
+       6  VT+I+G4+F         21     -3387.7958      6891.5916         2.0157    0.0987
+       7  WAG+I+G4+F        21     -3388.2809      6892.5618         2.9859    0.0608
+       8  WAG+F             19     -3392.5890      6896.1780         6.6021    0.0100
+       9  LG+G4+F           20     -3393.5435      6901.0870        11.5111    0.0009
+      10  LG+I+G4+F         21     -3393.4881      6902.9762        13.4003    0.0003
+--------------------------------------------------------------------------------
+Best model according to AICc
+---------------------------
+Model:              VT+I+F
+lnL:                -3387.7879
+Frequencies:        0.0861 0.0690 0.0548 0.0560 0.0003 0.0821 0.0292 0.1004 0.0101 0.0334 0.0645 0.0742 0.0170 0.0318 0.0676 0.0868 0.0750 0.0121 0.0268 0.0227
+Inv. sites prop:    0.0757
+Gamma shape:        -
+Score:              6889.5759
+Weight:             0.2705
+---------------------------
+Parameter importances
+---------------------------
+P.Inv:              0.3871
+Gamma:              0.3149
+Gamma-Inv:          0.1599
+Frequencies:        1.0000
+---------------------------
+Model averaged estimates
+---------------------------
+P.Inv:              0.0802
+Alpha:              3.6159
+Alpha-P.Inv:        59.0910
+P.Inv-Alpha:        0.0520
+Frequencies:        0.0861 0.0690 0.0548 0.0560 0.0003 0.0821 0.0292 0.1004 0.0101 0.0334 0.0645 0.0742 0.0170 0.0318 0.0676 0.0868 0.0750 0.0121 0.0268 0.0227 
+
+Commands:
+  > phyml  -i C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -d aa -m VT -f e -v e -a 0 -c 1 -o tlr
+  > raxmlHPC-SSE3 -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m PROTGAMMAIVTF -n EXEC_NAME -p PARSIMONY_SEED
+  > raxml-ng --msa C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta --model VT+I+F
+  > paup -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta
+  > iqtree -s C:\Users\Colby\Documents\GitHub\SARS-CoV-2_N-Cytokine_Docking\inputs\N-Proteins_aligned_modified.fasta -m VT+I+F
+Done
