@@ -24,8 +24,8 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 
 ### Results
 
-- Experiment Results: [haddock/experiment_results.csv](haddock/experiment_results.csv)
-- Best PDBs: [haddock/best_pdbs/](haddock/best_pdbs/)
+- Experiment Results: [haddock/postprocessing/experiment_results.csv](haddock/postprocessing/experiment_results.csv)
+- Best PDBs: [haddock/postprocessing/best_pdbs/](haddock/postprocessing/best_pdbs/)
 
 ### Resources
 
