@@ -153,3 +153,4 @@ manual_tests/*/run1/structures/it1/*.seed
 postprocessing/prodigy/
 postprocessing/prodigy.zip
 postprocessing/.Rhistory
+haddock/postprocessing/.Rhistory
