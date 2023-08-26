@@ -2969,8 +2969,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='700' minheight='700' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='14' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='13' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
+            <zone h='100000' id='16' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='15' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
                 <zone fixed-size='280' h='94638' id='3' is-fixed='true' name='Correlations (Top 4 Performers)' show-title='false' w='99200' x='400' y='667'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -3031,8 +3031,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='700' minheight='700' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='13' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='84000' id='12' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
+            <zone h='100000' id='15' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='14' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
                 <zone fixed-size='280' h='98666' id='3' is-fixed='true' name='Correlations' show-title='false' w='99200' x='400' y='667'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
