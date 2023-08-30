@@ -25,7 +25,8 @@ haddock_experiment_results <- read_csv("experiment_results.csv") %>%
   ) %>% 
   filter(
     !startsWith(cytokine_protein, "INF"),
-    !startsWith(cytokine_protein, "IL-6R")
+    !startsWith(cytokine_protein, "IL-6R"),
+    startsWith(n_protein, "SARS-CoV-2")
   )
 
 names(haddock_experiment_results) <- c("n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[3:27]))
