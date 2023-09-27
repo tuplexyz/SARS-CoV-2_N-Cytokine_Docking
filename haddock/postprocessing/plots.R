@@ -130,12 +130,13 @@ dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
            aes(color = "black"),
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
            # label.x = 1,
-           label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
+           # label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
+           label.y = -11
            ) +
-  facet_wrap(~ cytokine_protein) +
-  labs(y='Gibbs Energy\n(HADDOCK/PRODIGY)',
+  facet_wrap(~ cytokine_protein, ncol = 2) +
+  labs(y='Gibbs Energy\n(HADDOCK, PRODIGY)',
        # x='Variant',
-       x='Distance from SARS-CoV-2-WA1-N',
+       x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
@@ -159,11 +160,12 @@ dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
   stat_cor(method = "spearman",
            aes(color = "black"),
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
-           label.y = max(experiment_results_filtered$haddock_Evdw) * 1.2
+           # label.y = max(experiment_results_filtered$haddock_Evdw) * 1.2
+           label.y = -35
   ) +
-  facet_wrap(~ cytokine_protein) +
+  facet_wrap(~ cytokine_protein, ncol = 2) +
   labs(y='van der Waals Energy\n(HADDOCK)',
-       x='Distance from SARS-CoV-2-WA1-N',
+       x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
@@ -185,11 +187,12 @@ dist_by_af2_inteng_line <- ggplot(experiment_results_filtered,
   stat_cor(method = "spearman",
            aes(color = "black"),
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
-           label.y = max(experiment_results_filtered$`af2_foldx_Interaction Energy`) * 1.2
+           # label.y = max(experiment_results_filtered$`af2_foldx_Interaction Energy`) * 1.2
+           label.y = 60
   ) +
-  facet_wrap(~ cytokine_protein) +
-  labs(y='Interaction Energy\n(AlphaFold2/FoldX)',
-       x='Distance from SARS-CoV-2-WA1-N',
+  facet_wrap(~ cytokine_protein, ncol = 2) +
+  labs(y='Interaction Energy\n(AlphaFold2, FoldX)',
+       x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
@@ -211,11 +214,12 @@ dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
   stat_cor(method = "spearman",
            aes(color = "black"),
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
-           label.y = max(experiment_results_filtered$`af2_foldx_Van der Waals`) * 1.2
+           # label.y = max(experiment_results_filtered$`af2_foldx_Van der Waals`) * 0.8
+           label.y = -10
   ) +
-  facet_wrap(~ cytokine_protein) +
-  labs(y='van der Waals Energy\n(AlphaFold2/FoldX)',
-       x='Distance from SARS-CoV-2-WA1-N',
+  facet_wrap(~ cytokine_protein, ncol = 2) +
+  labs(y='van der Waals Energy\n(AlphaFold2, FoldX)',
+       x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
