@@ -4,6 +4,9 @@ library(stringr)
 library(treeio)
 library(ggtree)
 library(ggplot2)
+library(phylobase)
+library(ape)
+library(seqinr)
 
 
 ## Load in Tree
@@ -23,25 +26,32 @@ tree$tip.label <- pretty_tips
 
 
 ## Log(Branch Length)
-
+# tree$dist <- tree$edge.length
 tree$edge.length <- log(tree$edge.length) * -1
 
-
 ## Make tree
-
-ggtree(tree, layout='rectangular') +
-  geom_tiplab(color='black', offset = 4) +
-  # geom_tippoint(color="#FDAC4F", offset = 6, size=3) +
-  geom_label(aes(x = branch,
-                 label = sprintf("%.0e", exp(branch.length*-1))),
-            fill='white') +
-  geom_strip('SARS-CoV-2 WA1', 'SARS-CoV-2 XBB', barsize=1, color='blue', 
-             label = "SARS-CoV-2 Variants", offset = 45, offset.text = 1) +
-  geom_strip('OC43', 'BANAL-20-52', barsize=1, color='orange', 
+ggtree(tree,
+       # aes(color=exp(branch.length*-1)),
+       aes(color=branch.length),
+       layout='rectangular', size = 2) +
+  geom_tiplab(color='black', offset = 2) +
+  geom_tippoint(size=3) +
+  # geom_label(aes(x = branch,
+  #                label = sprintf("%.0e", exp(branch.length*-1))),
+  #           fill='white') +
+  geom_strip('SARS-CoV-2 WA1', 'SARS-CoV-2 XBB', barsize=1, color='darkred', 
+             label = "SARS-CoV-2 Variants", offset = 40, offset.text = 1) +
+  geom_strip('OC43', 'BANAL-20-52', barsize=1, color='darkblue', 
              label = "Reference Coronaviruses", offset = -70, offset.text = 1) +
   # geom_treescale(x=45, y=2,
   #                width = 10,
   #                label = "ln(branch length) * -1") +
+  scale_y_continuous(labels = c()) +
+  scale_color_gradient(low="blue", high="red") +
+  labs(color = "ln(branch length) * -1") +
+  theme(legend.position = c(0.8, 0.15),
+        legend.direction = "horizontal") +
+  guides(color = guide_colorbar(title.position="top"))+
   ggplot2::xlim(0, 200)
 
 
