@@ -65,4 +65,4 @@ singularity run -B cluster_tests/:/experiments haddock.sif /experiments/SARS-CoV
 
 ## Postprocessing
 
-Once all experiments have completed, running the [postprocessing/postprocessing.ipynb](postprocessing/postprocessing.ipynb) notebook on the results folder will grab the metrics of the best-performing cluster (and also find the best PDB file of the cluster). This will output a single .csv file of the metrics for the experiments. This will also copy the best PDB file from the results directory into a `best_pdbs/` folder.
+Once all experiments have completed, running the [postprocessing/postprocessing.ipynb](postprocessing/postprocessing.ipynb) notebook on the results folder will grab the metrics of the best-performing cluster (and also find the best PDB file of the cluster). This will output a single .csv file of the metrics for the experiments. This will also copy the best PDB file from the results directory into a `best_pdbs/` folder. The best PDB complexes for each experiment was scored through [PRODIGY](https://github.com/haddocking/prodigy) to predict the Gibbs energy (ΔG) of the complex.
