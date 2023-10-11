@@ -22,19 +22,13 @@ haddock_experiment_results <- read_csv("experiment_results.csv") %>%
       startsWith(cytokine_protein, "XCL") ~ "γ-Chemokine",
       .default = as.character(cytokine_protein)
     )
-  ) %>% 
-  filter(
-    !startsWith(cytokine_protein, "INF"),
-    !startsWith(cytokine_protein, "IL-6R"),
-    startsWith(n_protein, "SARS-CoV-2")
   )
 
-names(haddock_experiment_results) <- c("n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[3:27]))
+names(haddock_experiment_results) <- c("experiment_name", "n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[4:32]))
 
 
 ## AF2 PRODIGY Results
-af2_prodigy_results <- read_csv("../../alphafold2_multimer/best_AF2_and_GDock_experiment_results.csv") %>% 
-  mutate(n_protein = paste0(n_protein, "-N"))
+af2_prodigy_results <- read_csv("../../alphafold2_multimer/best_AF2_and_GDock_experiment_results.csv")
 
 names(af2_prodigy_results) <- paste0("af2_prodigy_", names(af2_prodigy_results))
 
@@ -62,9 +56,14 @@ N_dist <- dist.alignment(N_alignment) %>%
   select(n_protein, `dist_from_SARS-CoV-2-WA1-N_A`)
   
 
-experiment_results_filtered <- haddock_experiment_results %>%
+## Make dataframe of all results
+experiment_results <- haddock_experiment_results %>%
   left_join(N_dist, by=c("n_protein" = "n_protein")) %>% 
-  left_join(af2_experiment_results, by = c("n_protein" = "af2_prodigy_n_protein", "cytokine_protein" = "af2_prodigy_cytokine_protein")) %>% 
+  left_join(af2_experiment_results, by = c("n_protein" = "af2_prodigy_n_protein",
+                                           "cytokine_protein" = "af2_prodigy_cytokine_protein"))
+  
+## Filter to wet hits in SARS-CoV-2
+experiment_results_filtered <- experiment_results %>% 
   filter(cytokine_protein %in% c(
     "CCL5",
     "CCL11",
@@ -77,6 +76,7 @@ experiment_results_filtered <- haddock_experiment_results %>%
     "CXCL11",
     "CXCL12beta",
     "CXCL14"),
+    startsWith(n_protein, "SARS-CoV-2")
     # !n_protein %in% c("OC43-N", "MERS-CoV-N", "SARS-CoV-N")
   )
 
@@ -130,7 +130,7 @@ dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
        aes(
          # x = factor(n_protein, variant_order),
          x = `dist_from_SARS-CoV-2-WA1-N_A`,
-         y = haddock_prodigy_deltaG_kcalpermol,
+         y = haddock_foldx_deltaG_kcalpermol,
            group = cytokine_protein,
            color = haddock_cytokine_class
            )
@@ -149,7 +149,7 @@ dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
            label.y = -11
            ) +
   facet_wrap(~ cytokine_protein, ncol = 2) +
-  labs(y='Gibbs Energy\n(HADDOCK, PRODIGY)',
+  labs(y='Gibbs Energy\n(HADDOCK, FoldX)',
        # x='Variant',
        x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
