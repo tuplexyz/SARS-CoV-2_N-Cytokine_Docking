@@ -60,22 +60,29 @@ N_dist <- dist.alignment(N_alignment) %>%
 experiment_results <- haddock_experiment_results %>%
   left_join(N_dist, by=c("n_protein" = "n_protein")) %>% 
   left_join(af2_experiment_results, by = c("n_protein" = "af2_prodigy_n_protein",
-                                           "cytokine_protein" = "af2_prodigy_cytokine_protein"))
+                                           "cytokine_protein" = "af2_prodigy_cytokine_protein")) %>% 
+  mutate(wet_hit = case_when(
+    cytokine_protein %in% c(
+      "CCL5",
+      "CCL11",
+      "CCL21",
+      "CCL26",
+      "CCL28",
+      "CXCL4",
+      "CXCL9",
+      "CXCL10",
+      "CXCL11",
+      "CXCL12beta",
+      "CXCL14") ~ TRUE,
+    TRUE ~ FALSE
+  ))
+
+# readr::write_csv(experiment_results, "full_experiment_results.csv")
+
   
 ## Filter to wet hits in SARS-CoV-2
 experiment_results_filtered <- experiment_results %>% 
-  filter(cytokine_protein %in% c(
-    "CCL5",
-    "CCL11",
-    "CCL21",
-    "CCL26",
-    "CCL28",
-    "CXCL4",
-    "CXCL9",
-    "CXCL10",
-    "CXCL11",
-    "CXCL12beta",
-    "CXCL14"),
+  filter(wet_hit,
     startsWith(n_protein, "SARS-CoV-2")
     # !n_protein %in% c("OC43-N", "MERS-CoV-N", "SARS-CoV-N")
   )
