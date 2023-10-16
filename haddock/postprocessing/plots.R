@@ -24,13 +24,13 @@ haddock_experiment_results <- read_csv("experiment_results.csv") %>%
     )
   )
 
-names(haddock_experiment_results) <- c("experiment_name", "n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[4:32]))
+# names(haddock_experiment_results) <- c("experiment_name", "n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[4:32]))
 
 
 ## AF2 PRODIGY Results
 af2_prodigy_results <- read_csv("../../alphafold2_multimer/best_AF2_and_GDock_experiment_results.csv")
 
-names(af2_prodigy_results) <- paste0("af2_prodigy_", names(af2_prodigy_results))
+# names(af2_prodigy_results) <- paste0("af2_prodigy_", names(af2_prodigy_results))
 
 ## AF2 FoldX Results
 af2_foldx_results <- read_csv("../../alphafold2_multimer/Best_rankedInteraction_af2_fx.csv") %>% 
@@ -42,7 +42,7 @@ names(af2_foldx_results) <- paste0("af2_foldx_", names(af2_foldx_results))
 
 af2_experiment_results <- af2_prodigy_results %>%
   inner_join(af2_foldx_results,
-             by = c("af2_prodigy_n_protein" = "af2_foldx_protein_A", "af2_prodigy_cytokine_protein" = "af2_foldx_protein_B"))
+             by = c("n_protein" = "af2_foldx_protein_A", "cytokine_protein" = "af2_foldx_protein_B"))
 
 
 ## Get Genetic Distances
@@ -59,9 +59,9 @@ N_dist <- dist.alignment(N_alignment) %>%
 ## Make dataframe of all results
 experiment_results <- haddock_experiment_results %>%
   left_join(N_dist, by=c("n_protein" = "n_protein")) %>% 
-  left_join(af2_experiment_results, by = c("n_protein" = "af2_prodigy_n_protein",
-                                           "cytokine_protein" = "af2_prodigy_cytokine_protein")) %>% 
-  mutate(wet_hit = case_when(
+  left_join(af2_experiment_results, by = c("n_protein" = "n_protein",
+                                           "cytokine_protein" = "cytokine_protein")) %>% 
+  mutate(wa1_wet_hit = case_when(
     cytokine_protein %in% c(
       "CCL5",
       "CCL11",
@@ -74,16 +74,40 @@ experiment_results <- haddock_experiment_results %>%
       "CXCL11",
       "CXCL12beta",
       "CXCL14") ~ TRUE,
-    TRUE ~ FALSE
-  ))
+    TRUE ~ FALSE),
+    oc43_wet_hit = case_when(
+      cytokine_protein %in% c(
+        "CCL5",
+        "CCL11",
+        "CCL13",
+        "CCL20",
+        "CCL21",
+        "CCL25",
+        "CCL26",
+        "CCL28",
+        "CXCL4",
+        "CXCL9",
+        "CXCL10",
+        "CXCL11",
+        "CXCL12alpha",
+        "CXCL12beta",
+        "CXCL13",
+        "CXCL14",
+        "IL27") ~ TRUE,
+      TRUE ~ FALSE),
+    wet_hit = case_when(
+      wa1_wet_hit ~ "SARS-CoV-2 Wet Hit",
+      oc43_wet_hit ~ "HCoV-OC43 Wet Hit",
+      TRUE ~ "Not Wet Hit")
+  )
 
 # readr::write_csv(experiment_results, "full_experiment_results.csv")
 
   
 ## Filter to wet hits in SARS-CoV-2
 experiment_results_filtered <- experiment_results %>% 
-  filter(wet_hit,
-    startsWith(n_protein, "SARS-CoV-2")
+  filter(wet_hit == "SARS-CoV-2 Wet Hit",
+         startsWith(n_protein, "SARS-CoV-2")
     # !n_protein %in% c("OC43-N", "MERS-CoV-N", "SARS-CoV-N")
   )
 
@@ -139,7 +163,7 @@ dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
          x = `dist_from_SARS-CoV-2-WA1-N_A`,
          y = haddock_foldx_deltaG_kcalpermol,
            group = cytokine_protein,
-           color = haddock_cytokine_class
+           color = cytokine_class
            )
        ) + 
   # geom_line() +
@@ -171,7 +195,7 @@ dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
          x = `dist_from_SARS-CoV-2-WA1-N_A`,
          y = haddock_Evdw,
          group = cytokine_protein,
-         color = haddock_cytokine_class
+         color = cytokine_class
        )
 ) + 
   geom_point() +
@@ -226,9 +250,9 @@ dist_by_af2_gibbs_line <- ggplot(experiment_results_filtered,
                                      aes(
                                        # x = factor(n_protein, variant_order),
                                        x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       y = af2_prodigy_prodigy_deltaG_kcalpermol,
+                                       y = af2_prodigy_deltaG_kcalpermol,
                                        group = cytokine_protein,
-                                       color = haddock_cytokine_class
+                                       color = cytokine_class
                                      )
 ) + 
   # geom_line() +
@@ -259,7 +283,7 @@ dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
                                        x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                        y = `af2_foldx_Van der Waals`,
                                        group = cytokine_protein,
-                                       color = haddock_cytokine_class
+                                       color = cytokine_class
                                      )) + 
   geom_point() +
   geom_smooth(method = lm,
