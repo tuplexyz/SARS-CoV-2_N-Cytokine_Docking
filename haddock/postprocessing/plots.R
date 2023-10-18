@@ -26,23 +26,28 @@ haddock_experiment_results <- read_csv("experiment_results.csv") %>%
 
 # names(haddock_experiment_results) <- c("experiment_name", "n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[4:32]))
 
+## AF2 Results
+af2_experiment_results <- read_csv("../../alphafold2_multimer/experiment_results.csv")
 
-## AF2 PRODIGY Results
-af2_prodigy_results <- read_csv("../../alphafold2_multimer/best_AF2_and_GDock_experiment_results.csv")
-
-# names(af2_prodigy_results) <- paste0("af2_prodigy_", names(af2_prodigy_results))
-
-## AF2 FoldX Results
-af2_foldx_results <- read_csv("../../alphafold2_multimer/Best_rankedInteraction_af2_fx.csv") %>% 
-  select(experiment, protein_A, protein_B, `Van der Waals`) %>% 
-  group_by(experiment) %>% 
-  slice(which.min(`Van der Waals`))
-names(af2_foldx_results) <- paste0("af2_foldx_", names(af2_foldx_results))
+colnames(af2_experiment_results) <- paste("af2", colnames(af2_experiment_results), sep = "_") %>% sub("af2_af2_", "af2_", .)
 
 
-af2_experiment_results <- af2_prodigy_results %>%
-  inner_join(af2_foldx_results,
-             by = c("n_protein" = "af2_foldx_protein_A", "cytokine_protein" = "af2_foldx_protein_B"))
+# ## AF2 PRODIGY Results
+# af2_prodigy_results <- read_csv("../../alphafold2_multimer/best_AF2_and_GDock_experiment_results.csv")
+# 
+# # names(af2_prodigy_results) <- paste0("af2_prodigy_", names(af2_prodigy_results))
+# 
+# ## AF2 FoldX Results
+# af2_foldx_results <- read_csv("../../alphafold2_multimer/Best_rankedInteraction_af2_fx.csv") %>% 
+#   select(experiment, protein_A, protein_B, `Van der Waals`) %>% 
+#   group_by(experiment) %>% 
+#   slice(which.min(`Van der Waals`))
+# names(af2_foldx_results) <- paste0("af2_foldx_", names(af2_foldx_results))
+
+
+# af2_experiment_results <- af2_prodigy_results %>%
+#   inner_join(af2_foldx_results,
+#              by = c("n_protein" = "af2_foldx_protein_A", "cytokine_protein" = "af2_foldx_protein_B"))
 
 
 ## Get Genetic Distances
@@ -59,8 +64,8 @@ N_dist <- dist.alignment(N_alignment) %>%
 ## Make dataframe of all results
 experiment_results <- haddock_experiment_results %>%
   left_join(N_dist, by=c("n_protein" = "n_protein")) %>% 
-  left_join(af2_experiment_results, by = c("n_protein" = "n_protein",
-                                           "cytokine_protein" = "cytokine_protein")) %>% 
+  left_join(af2_experiment_results, by = c("n_protein" = "af2_n_protein",
+                                           "cytokine_protein" = "af2_cytokine_protein")) %>% 
   mutate(wa1_wet_hit = case_when(
     cytokine_protein %in% c(
       "CCL5",
@@ -157,11 +162,11 @@ variant_order = c(
 
 
 ## Line Chart (HADDOCK PRODIGY Delta G)
-dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
+dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
        aes(
          # x = factor(n_protein, variant_order),
          x = `dist_from_SARS-CoV-2-WA1-N_A`,
-         y = haddock_foldx_deltaG_kcalpermol,
+         y = haddock_prodigy_deltaG_kcalpermol,
            group = cytokine_protein,
            color = cytokine_class
            )
@@ -180,13 +185,46 @@ dist_by_haddock_gibbs_line <- ggplot(experiment_results_filtered,
            label.y = -11
            ) +
   facet_wrap(~ cytokine_protein, ncol = 2) +
-  labs(y='Gibbs Energy\n(HADDOCK, FoldX)',
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, PRODIGY)',
        # x='Variant',
        x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
         legend.position = "none")
+
+## Line Chart (HADDOCK FoldX Delta G)
+dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results_filtered,
+                                     aes(
+                                       # x = factor(n_protein, variant_order),
+                                       x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                       y = haddock_foldx_deltaG_kcalpermol,
+                                       group = cytokine_protein,
+                                       color = cytokine_class
+                                     )
+) + 
+  # geom_line() +
+  geom_point() +
+  geom_smooth(method = lm,
+              se = FALSE,
+              col='grey',
+              linewidth=0.7) +
+  stat_cor(method = "spearman",
+           aes(color = "black"),
+           label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
+           # label.x = 1,
+           # label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
+           label.y = -11
+  ) +
+  facet_wrap(~ cytokine_protein, ncol = 2) +
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, FoldX)',
+       # x='Variant',
+       x='Distance from SARS-CoV-2 WA1 N',
+       color = "Cytokine Class") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        legend.position = "none")
+
 
 
 ## Line Chart (HADDOCK VDW Energy)
@@ -217,40 +255,14 @@ dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
         legend.position = "none")
 
-## Line Chart (AF2 FoldX Interaction Energy)
-# dist_by_af2_inteng_line <- ggplot(experiment_results_filtered,
-#                                aes(
-#                                  x = `dist_from_SARS-CoV-2-WA1-N_A`,
-#                                  y = `af2_foldx_Interaction Energy`,
-#                                  group = cytokine_protein,
-#                                  color = haddock_cytokine_class
-#                                )) + 
-#   geom_point() +
-#   geom_smooth(method = lm,
-#               se = FALSE,
-#               col='grey',
-#               linewidth=0.7) +
-#   stat_cor(method = "spearman",
-#            aes(color = "black"),
-#            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
-#            # label.y = max(experiment_results_filtered$`af2_foldx_Interaction Energy`) * 1.2
-#            label.y = 60
-#   ) +
-#   facet_wrap(~ cytokine_protein, ncol = 2) +
-#   labs(y='Interaction Energy\n(AlphaFold2, FoldX)',
-#        x='Distance from SARS-CoV-2 WA1 N',
-#        color = "Cytokine Class") +
-#   theme_bw() +
-#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-#         legend.position = "none")
 
-## Line Chart (AF2 PRODIGY Delta G)
-
-dist_by_af2_gibbs_line <- ggplot(experiment_results_filtered,
+## Line Chart (AF2 FoldX Delta G)
+dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results_filtered,
                                      aes(
                                        # x = factor(n_protein, variant_order),
                                        x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       y = af2_prodigy_deltaG_kcalpermol,
+                                       # y = af2_prodigy_deltaG_kcalpermol,
+                                       y = af2_foldx_dG,
                                        group = cytokine_protein,
                                        color = cytokine_class
                                      )
@@ -266,10 +278,43 @@ dist_by_af2_gibbs_line <- ggplot(experiment_results_filtered,
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
            # label.x = 1,
            # label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
+           label.y = 200
+  ) +
+  facet_wrap(~ cytokine_protein, ncol = 2) +
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, FoldX)',
+       # x='Variant',
+       x='Distance from SARS-CoV-2 WA1 N',
+       color = "Cytokine Class") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        legend.position = "none")
+
+
+## Line Chart (AF2 PRODIGY Delta G)
+dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
+                                       aes(
+                                         # x = factor(n_protein, variant_order),
+                                         x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                         y = af2_prodigy_deltaG_kcalpermol,
+                                         group = cytokine_protein,
+                                         color = cytokine_class
+                                       )
+) + 
+  # geom_line() +
+  geom_point() +
+  geom_smooth(method = lm,
+              se = FALSE,
+              col='grey',
+              linewidth=0.7) +
+  stat_cor(method = "spearman",
+           aes(color = "black"),
+           label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
+           # label.x = 1,
+           # label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
            label.y = -11
   ) +
   facet_wrap(~ cytokine_protein, ncol = 2) +
-  labs(y='Gibbs Energy\n(AlphaFold2, PRODIGY)',
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, PRODIGY)',
        # x='Variant',
        x='Distance from SARS-CoV-2 WA1 N',
        color = "Cytokine Class") +
@@ -281,7 +326,7 @@ dist_by_af2_gibbs_line <- ggplot(experiment_results_filtered,
 dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
                                      aes(
                                        x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       y = `af2_foldx_Van der Waals`,
+                                       y = `af2_Van der Waals`,
                                        group = cytokine_protein,
                                        color = cytokine_class
                                      )) + 
@@ -294,7 +339,7 @@ dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
            aes(color = "black"),
            label.x = min(experiment_results_filtered$`dist_from_SARS-CoV-2-WA1-N_A`),
            # label.y = max(experiment_results_filtered$`af2_foldx_Van der Waals`) * 0.8
-           label.y = -10
+           label.y = -25
   ) +
   facet_wrap(~ cytokine_protein, ncol = 2) +
   labs(y='van der Waals Energy\n(AlphaFold2, FoldX)',
@@ -305,46 +350,15 @@ dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
         legend.position = "none")
 
 
-ggarrange(dist_by_haddock_gibbs_line,
-          dist_by_haddock_vdw_line, 
-          # dist_by_af2_inteng_line,
-          dist_by_af2_gibbs_line,
+ggarrange(dist_by_haddock_gibbs_line_prodigy,
+          dist_by_haddock_gibbs_line_foldx,
+          dist_by_haddock_vdw_line,
+          dist_by_af2_gibbs_line_prodigy,
+          dist_by_af2_gibbs_line_foldx,
           dist_by_af2_vdw_line, 
-          labels = c("H.a", "H.b", "AF.a", "AF.b"),
-          ncol = 2, nrow = 2)
+          labels = c("H.a", "H.b", "H.c", "AF.a", "AF.b", "AF.c"),
+          ncol = 3, nrow = 2)
 
-## Correlations
+## Boxplots
 
-# haddock_experiment_results_pvt <- haddock_experiment_results %>% 
-#   select(n_protein, cytokine_protein, prodigy_deltaG_kcalpermol, starts_with("dist_")) %>% 
-#   pivot_longer(!c(n_protein, cytokine_protein, prodigy_deltaG_kcalpermol), names_to = "distance_from", values_to = "distance")
-# 
-# haddock_correlations <- haddock_experiment_results_pvt %>% 
-#   group_by(cytokine_protein, distance_from) %>% 
-#   summarize(
-#     correlation = cor.test(
-#       x = prodigy_deltaG_kcalpermol,
-#       # y = `dist_from_OC43-N_A`,
-#       y = distance,
-#       method = "spearman"
-#       )[['estimate']],
-#     p_value = cor.test(
-#       x = prodigy_deltaG_kcalpermol,
-#       # y = `dist_from_OC43-N_A`,
-#       y = distance,
-#       method = "spearman"
-#     )[['p.value']],
-#     ) %>% 
-#   filter(p_value < 0.05)
-# 
-# 
-# ggplot(correlations,
-#        aes(x = distance_from,
-#            y = cytokine_protein,
-#            fill = correlation)) + 
-#   geom_tile() +
-#   labs(y='Cytokine Protein',
-#        x='Distance from ...',
-#        color = "Spearman Correlation") +
-#   theme_bw() +
-#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
