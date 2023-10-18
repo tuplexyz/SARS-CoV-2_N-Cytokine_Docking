@@ -59,7 +59,7 @@ N_dist <- dist.alignment(N_alignment) %>%
   tibble::rownames_to_column(var = "n_protein") %>% 
   mutate(n_protein = n_protein %>% str_replace("_A", "")) %>% 
   select(n_protein, `dist_from_SARS-CoV-2-WA1-N_A`)
-  
+
 
 ## Make dataframe of all results
 experiment_results <- haddock_experiment_results %>%
@@ -108,12 +108,12 @@ experiment_results <- haddock_experiment_results %>%
 
 # readr::write_csv(experiment_results, "full_experiment_results.csv")
 
-  
+
 ## Filter to wet hits in SARS-CoV-2
 experiment_results_filtered <- experiment_results %>% 
   filter(wet_hit == "SARS-CoV-2 Wet Hit",
          startsWith(n_protein, "SARS-CoV-2")
-    # !n_protein %in% c("OC43-N", "MERS-CoV-N", "SARS-CoV-N")
+         # !n_protein %in% c("OC43-N", "MERS-CoV-N", "SARS-CoV-N")
   )
 
 
@@ -137,40 +137,18 @@ variant_order = c(
   "SARS-CoV-2-XBB-N" # Kraken
 )
 
-## Box Plots
-# ggplot(experiment_results_filtered,
-#        aes(x = factor(n_protein, variant_order),
-#            y = haddock_prodigy_deltaG_kcalpermol
-#            # color = cytokine_protein
-#            )
-#        ) + 
-#   geom_boxplot() +
-#   # geom_jitter(shape=16,
-#   #             position=position_jitter(0.2)) +
-#   # geom_point(position=position_jitterdodge(jitter.width=0, dodge.width = 0.3, seed = 1337),
-#   #            aes(color=factor(cytokine_protein)), show.legend = F) +
-#   facet_wrap(~ haddock_cytokine_class,
-#              nrow = 2,
-#              ncol = 3) +
-#   labs(y='Gibbs Energy',
-#        x='Variant',
-#        color = "Cytokine Class") +
-#   # coord_flip() +
-#   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-#         legend.position = "none")
-
 
 
 ## Line Chart (HADDOCK PRODIGY Delta G)
 dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
-       aes(
-         # x = factor(n_protein, variant_order),
-         x = `dist_from_SARS-CoV-2-WA1-N_A`,
-         y = haddock_prodigy_deltaG_kcalpermol,
-           group = cytokine_protein,
-           color = cytokine_class
-           )
-       ) + 
+                                             aes(
+                                               # x = factor(n_protein, variant_order),
+                                               x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                               y = haddock_prodigy_deltaG_kcalpermol,
+                                               group = cytokine_protein,
+                                               color = cytokine_class
+                                             )
+) + 
   # geom_line() +
   geom_point() +
   geom_smooth(method = lm,
@@ -183,7 +161,7 @@ dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
            # label.x = 1,
            # label.y = max(experiment_results_filtered$haddock_prodigy_deltaG_kcalpermol) * 1.2
            label.y = -11
-           ) +
+  ) +
   facet_wrap(~ cytokine_protein, ncol = 2) +
   labs(y='Predicted Gibbs Energy\n(HADDOCK, PRODIGY)',
        # x='Variant',
@@ -195,13 +173,13 @@ dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
 
 ## Line Chart (HADDOCK FoldX Delta G)
 dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results_filtered,
-                                     aes(
-                                       # x = factor(n_protein, variant_order),
-                                       x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       y = haddock_foldx_deltaG_kcalpermol,
-                                       group = cytokine_protein,
-                                       color = cytokine_class
-                                     )
+                                           aes(
+                                             # x = factor(n_protein, variant_order),
+                                             x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                             y = haddock_foldx_deltaG_kcalpermol,
+                                             group = cytokine_protein,
+                                             color = cytokine_class
+                                           )
 ) + 
   # geom_line() +
   geom_point() +
@@ -229,12 +207,12 @@ dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results_filtered,
 
 ## Line Chart (HADDOCK VDW Energy)
 dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
-       aes(
-         x = `dist_from_SARS-CoV-2-WA1-N_A`,
-         y = haddock_Evdw,
-         group = cytokine_protein,
-         color = cytokine_class
-       )
+                                   aes(
+                                     x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                     y = haddock_Evdw,
+                                     group = cytokine_protein,
+                                     color = cytokine_class
+                                   )
 ) + 
   geom_point() +
   geom_smooth(method = lm,
@@ -258,14 +236,14 @@ dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
 
 ## Line Chart (AF2 FoldX Delta G)
 dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results_filtered,
-                                     aes(
-                                       # x = factor(n_protein, variant_order),
-                                       x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       # y = af2_prodigy_deltaG_kcalpermol,
-                                       y = af2_foldx_dG,
-                                       group = cytokine_protein,
-                                       color = cytokine_class
-                                     )
+                                       aes(
+                                         # x = factor(n_protein, variant_order),
+                                         x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                         # y = af2_prodigy_deltaG_kcalpermol,
+                                         y = af2_foldx_dG,
+                                         group = cytokine_protein,
+                                         color = cytokine_class
+                                       )
 ) + 
   # geom_line() +
   geom_point() +
@@ -292,13 +270,13 @@ dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results_filtered,
 
 ## Line Chart (AF2 PRODIGY Delta G)
 dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
-                                       aes(
-                                         # x = factor(n_protein, variant_order),
-                                         x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                         y = af2_prodigy_deltaG_kcalpermol,
-                                         group = cytokine_protein,
-                                         color = cytokine_class
-                                       )
+                                         aes(
+                                           # x = factor(n_protein, variant_order),
+                                           x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                           y = af2_prodigy_deltaG_kcalpermol,
+                                           group = cytokine_protein,
+                                           color = cytokine_class
+                                         )
 ) + 
   # geom_line() +
   geom_point() +
@@ -324,12 +302,12 @@ dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
 
 ## Line Chart (AF2 FoldX VDW)
 dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
-                                     aes(
-                                       x = `dist_from_SARS-CoV-2-WA1-N_A`,
-                                       y = `af2_Van der Waals`,
-                                       group = cytokine_protein,
-                                       color = cytokine_class
-                                     )) + 
+                               aes(
+                                 x = `dist_from_SARS-CoV-2-WA1-N_A`,
+                                 y = `af2_Van der Waals`,
+                                 group = cytokine_protein,
+                                 color = cytokine_class
+                               )) + 
   geom_point() +
   geom_smooth(method = lm,
               se = FALSE,
@@ -356,9 +334,198 @@ ggarrange(dist_by_haddock_gibbs_line_prodigy,
           dist_by_af2_gibbs_line_prodigy,
           dist_by_af2_gibbs_line_foldx,
           dist_by_af2_vdw_line, 
-          labels = c("H.a", "H.b", "H.c", "AF.a", "AF.b", "AF.c"),
+          labels = c("H.a", "H.b", "H.c",
+                     "AF.a", "AF.b", "AF.c"),
           ncol = 3, nrow = 2)
 
 ## Boxplots
+library(ggpubr)
 
+### HADDOCK
+bp_haddock_gibbs_prodigy_wa1 <- ggplot(experiment_results %>% 
+                                         filter(n_protein == "SARS-CoV-2-WA1-N"),
+                                       aes(x = wa1_wet_hit,
+                                           y = haddock_prodigy_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, PRODIGY)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_haddock_gibbs_prodigy_oc43 <- ggplot(experiment_results %>% 
+                                          filter(n_protein == "OC43-N"),
+                                        aes(x = oc43_wet_hit,
+                                            y = haddock_prodigy_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, PRODIGY)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means() 
+
+bp_haddock_gibbs_foldx_wa1 <- ggplot(experiment_results %>% 
+                                       filter(n_protein == "SARS-CoV-2-WA1-N"),
+                                     aes(x = wa1_wet_hit,
+                                         y = haddock_foldx_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means() 
+
+bp_haddock_gibbs_foldx_oc43 <- ggplot(experiment_results %>% 
+                                        filter(n_protein == "OC43-N"),
+                                      aes(x = oc43_wet_hit,
+                                          y = haddock_foldx_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(HADDOCK, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_haddock_vdw_wa1 <- ggplot(experiment_results %>% 
+                               filter(n_protein == "SARS-CoV-2-WA1-N"),
+                             aes(x = wa1_wet_hit,
+                                 y = haddock_Evdw)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  labs(y='van der Waals Energy\n(HADDOCK)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_haddock_vdw_oc43 <- ggplot(experiment_results %>% 
+                                filter(n_protein == "OC43-N"),
+                              aes(x = oc43_wet_hit,
+                                  y = haddock_Evdw)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='van der Waals Energy\n(HADDOCK)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+
+### AF2
+bp_af2_gibbs_prodigy_wa1 <- ggplot(experiment_results %>% 
+                                     filter(n_protein == "SARS-CoV-2-WA1-N"),
+                                   aes(x = wa1_wet_hit,
+                                       y = af2_prodigy_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, PRODIGY)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means() 
+
+bp_af2_gibbs_prodigy_oc43 <- ggplot(experiment_results %>% 
+                                      filter(n_protein == "OC43-N"),
+                                    aes(x = oc43_wet_hit,
+                                        y = af2_prodigy_deltaG_kcalpermol)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, PRODIGY)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_af2_gibbs_foldx_wa1 <- ggplot(experiment_results %>% 
+                                   filter(n_protein == "SARS-CoV-2-WA1-N"),
+                                 aes(x = wa1_wet_hit,
+                                     y = af2_foldx_dG)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_af2_gibbs_foldx_oc43 <- ggplot(experiment_results %>% 
+                                    filter(n_protein == "OC43-N"),
+                                  aes(x = oc43_wet_hit,
+                                      y = af2_foldx_dG)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='Predicted Gibbs Energy\n(AlphaFold2, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_af2_vdw_wa1 <- ggplot(experiment_results %>% 
+                           filter(n_protein == "SARS-CoV-2-WA1-N"),
+                         aes(x = wa1_wet_hit,
+                             y = `af2_Van der Waals`)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=wa1_wet_hit)) +
+  labs(y='van der Waals Energy\n(AlphaFold2, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+bp_af2_vdw_oc43 <- ggplot(experiment_results %>% 
+                            filter(n_protein == "OC43-N"),
+                          aes(x = oc43_wet_hit,
+                              y = `af2_Van der Waals`)) +
+  geom_boxplot() +
+  geom_dotplot(binaxis = 'y', stackdir = 'center', position = position_dodge(), aes(fill=oc43_wet_hit)) +
+  labs(y='van der Waals Energy\n(AlphaFold2, FoldX)',
+       x='Wet Hit') +
+  facet_wrap(~n_protein) +
+  scale_fill_manual(values=c("#5D2689", "#F5BD1F")) + 
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  stat_compare_means()
+
+
+ggarrange(bp_haddock_gibbs_prodigy_wa1,
+          bp_haddock_gibbs_foldx_wa1,
+          bp_haddock_vdw_wa1,
+          bp_af2_gibbs_prodigy_wa1,
+          bp_af2_gibbs_foldx_wa1,
+          bp_af2_vdw_wa1,
+          bp_haddock_gibbs_prodigy_oc43,
+          bp_haddock_gibbs_foldx_oc43,
+          bp_haddock_vdw_oc43,
+          bp_af2_gibbs_prodigy_oc43,
+          bp_af2_gibbs_foldx_oc43,
+          bp_af2_vdw_oc43,
+          # labels = c("SARS-CoV-2 WA-1 Wet Hits", "HCoV-OC43 Wet Hits"),
+          ncol = 6, nrow = 2)
 
