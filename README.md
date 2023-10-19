@@ -1,6 +1,6 @@
 # SARS-CoV-2 Nucleocapsid-Cytokine Docking Analyses
 
-<h3 align="right">Tuple and MIT Lincoln Lab</h3>
+<h3 align="right">MIT Lincoln Lab and Tuple</h3>
 
 Large scale, _in silico_ interaction analyses of SARS-CoV-2 nucleocapsid protein variants against human cytokines.
 
