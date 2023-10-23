@@ -140,7 +140,20 @@ variant_order = c(
 
 
 ## Line Chart (HADDOCK PRODIGY Delta G)
-dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
+sig_had_pro_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     haddock_prodigy_deltaG_kcalpermol,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results %>%
+                                               filter(startsWith(n_protein, "SARS-CoV-2"),
+                                                      cytokine_protein %in% sig_had_pro_er$cytokine_protein),
+                                             # experiment_results_filtered,
                                              aes(
                                                # x = factor(n_protein, variant_order),
                                                x = `dist_from_SARS-CoV-2-WA1-N_A`,
@@ -172,7 +185,20 @@ dist_by_haddock_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
         legend.position = "none")
 
 ## Line Chart (HADDOCK FoldX Delta G)
-dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results_filtered,
+sig_had_fol_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     haddock_foldx_deltaG_kcalpermol,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results %>%
+                                             filter(startsWith(n_protein, "SARS-CoV-2"),
+                                                    cytokine_protein %in% sig_had_fol_er$cytokine_protein),
+                                           # experiment_results_filtered,
                                            aes(
                                              # x = factor(n_protein, variant_order),
                                              x = `dist_from_SARS-CoV-2-WA1-N_A`,
@@ -206,7 +232,20 @@ dist_by_haddock_gibbs_line_foldx <- ggplot(experiment_results_filtered,
 
 
 ## Line Chart (HADDOCK VDW Energy)
-dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
+sig_had_vdw_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     haddock_Evdw,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_haddock_vdw_line <- ggplot(experiment_results %>%
+                                     filter(startsWith(n_protein, "SARS-CoV-2"),
+                                            cytokine_protein %in% sig_had_vdw_er$cytokine_protein),
+                                   # experiment_results_filtered,
                                    aes(
                                      x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                      y = haddock_Evdw,
@@ -235,7 +274,20 @@ dist_by_haddock_vdw_line <- ggplot(experiment_results_filtered,
 
 
 ## Line Chart (AF2 FoldX Delta G)
-dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results_filtered,
+sig_af2_fol_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     af2_foldx_dG,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results %>%
+                                         filter(startsWith(n_protein, "SARS-CoV-2"),
+                                                cytokine_protein %in% sig_af2_fol_er$cytokine_protein),
+                                       # experiment_results_filtered,
                                        aes(
                                          # x = factor(n_protein, variant_order),
                                          x = `dist_from_SARS-CoV-2-WA1-N_A`,
@@ -269,7 +321,20 @@ dist_by_af2_gibbs_line_foldx <- ggplot(experiment_results_filtered,
 
 
 ## Line Chart (AF2 PRODIGY Delta G)
-dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
+sig_af2_pro_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     af2_prodigy_deltaG_kcalpermol,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results %>%
+                                           filter(startsWith(n_protein, "SARS-CoV-2"),
+                                                  cytokine_protein %in% sig_af2_pro_er$cytokine_protein),
+                                         # experiment_results_filtered,
                                          aes(
                                            # x = factor(n_protein, variant_order),
                                            x = `dist_from_SARS-CoV-2-WA1-N_A`,
@@ -301,7 +366,20 @@ dist_by_af2_gibbs_line_prodigy <- ggplot(experiment_results_filtered,
         legend.position = "none")
 
 ## Line Chart (AF2 FoldX VDW)
-dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
+sig_af2_vdw_er <- experiment_results %>% 
+  filter(startsWith(n_protein, "SARS-CoV-2")) %>% 
+  group_by(cytokine_protein) %>% 
+  summarize(cor.test(`dist_from_SARS-CoV-2-WA1-N_A`, 
+                     `af2_Van der Waals`,
+                     alternative = "two.sided",
+                     method = "spearman")[["p.value"]]) %>% 
+  rename(p_value = 2) %>% 
+  filter(p_value <= 0.05)
+
+dist_by_af2_vdw_line <- ggplot(experiment_results %>%
+                                 filter(startsWith(n_protein, "SARS-CoV-2"),
+                                        cytokine_protein %in% sig_af2_vdw_er$cytokine_protein),
+                               # experiment_results_filtered,
                                aes(
                                  x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                  y = `af2_Van der Waals`,
@@ -329,14 +407,16 @@ dist_by_af2_vdw_line <- ggplot(experiment_results_filtered,
 
 
 ggarrange(dist_by_haddock_gibbs_line_prodigy,
-          dist_by_haddock_gibbs_line_foldx,
+          # dist_by_haddock_gibbs_line_foldx,
           dist_by_haddock_vdw_line,
           dist_by_af2_gibbs_line_prodigy,
-          dist_by_af2_gibbs_line_foldx,
+          # dist_by_af2_gibbs_line_foldx,
           dist_by_af2_vdw_line, 
-          labels = c("H.a", "H.b", "H.c",
-                     "AF.a", "AF.b", "AF.c"),
-          ncol = 3, nrow = 2)
+          labels = c(
+            "H.a", "H.b", #"H.c",
+            "AF.a", "AF.b"#, "AF.c"
+            ),
+          ncol = 2, nrow = 2)
 
 ## Boxplots
 library(ggpubr)
