@@ -22,16 +22,19 @@ haddock_experiment_results <- read_csv("experiment_results.csv") %>%
       startsWith(cytokine_protein, "XCL") ~ "γ-Chemokine",
       .default = as.character(cytokine_protein)
     ),
-    cytokine_class_color = case_when(
-      cytokine_class == "β-Chemokine" ~ "#E69F00",
-      cytokine_class == "α-Chemokine" ~ "#56B4E9",
-      cytokine_class == "Interferon" ~ "#009E73",
-      cytokine_class == "Interleukin" ~ "#0072B2",
-      cytokine_class == "Tumor Necrosis Factor" ~ "#D55E00",
-      cytokine_class == "γ-Chemokine" ~ "#CC79A7",
-      .default = "#000000"
-    )
+    # cytokine_class = factor(cytokine_class)
+    # cytokine_class_color = case_when(
+    #   cytokine_class == "β-Chemokine" ~ "#E69F00",
+    #   cytokine_class == "α-Chemokine" ~ "#56B4E9",
+    #   cytokine_class == "Interferon" ~ "#009E73",
+    #   cytokine_class == "Interleukin" ~ "#0072B2",
+    #   cytokine_class == "Tumor Necrosis Factor" ~ "#D55E00",
+    #   cytokine_class == "γ-Chemokine" ~ "#CC79A7",
+    #   .default = "#000000"
+    # )
   )
+
+# class_levels <- levels(factor(experiment_results$cytokine_class))
 
 # names(haddock_experiment_results) <- c("experiment_name", "n_protein", "cytokine_protein", paste0("haddock_", names(haddock_experiment_results)[4:32]))
 
@@ -154,7 +157,7 @@ dist_by_haddock_gibbs_line_prodigy_wh <- ggplot(experiment_results_filtered,
                                                x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                                y = haddock_prodigy_deltaG_kcalpermol,
                                                group = cytokine_protein,
-                                               color = cytokine_class_color
+                                               color = n_protein
                                              )
 ) + 
   geom_point() +
@@ -181,7 +184,7 @@ dist_by_haddock_gibbs_line_foldx_wh <- ggplot(experiment_results_filtered,
                                              x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                              y = haddock_foldx_deltaG_kcalpermol,
                                              group = cytokine_protein,
-                                             color = cytokine_class_color
+                                             color = n_protein
                                            )
 ) + 
   geom_point() +
@@ -210,7 +213,7 @@ dist_by_haddock_vdw_line_wh <- ggplot(experiment_results_filtered,
                                      x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                      y = haddock_Evdw,
                                      group = cytokine_protein,
-                                     color = cytokine_class_color
+                                     color = n_protein
                                    )
 ) + 
   geom_point() +
@@ -238,7 +241,7 @@ dist_by_af2_gibbs_line_foldx_wh <- ggplot(experiment_results_filtered,
                                          x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                          y = af2_foldx_dG,
                                          group = cytokine_protein,
-                                         color = cytokine_class_color
+                                         color = n_protein
                                        )
 ) +
   geom_point() +
@@ -266,7 +269,7 @@ dist_by_af2_gibbs_line_prodigy_wh <- ggplot(experiment_results_filtered,
                                            x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                            y = af2_prodigy_deltaG_kcalpermol,
                                            group = cytokine_protein,
-                                           color = cytokine_class_color
+                                           color = n_protein
                                          )
 ) + 
   geom_point() +
@@ -293,7 +296,7 @@ dist_by_af2_vdw_line_wh <- ggplot(experiment_results_filtered,
                                  x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                  y = `af2_Van der Waals`,
                                  group = cytokine_protein,
-                                 color = cytokine_class_color
+                                 color = n_protein
                                )) + 
   geom_point() +
   geom_smooth(method = lm,
@@ -351,7 +354,7 @@ dist_by_haddock_gibbs_line_prodigy_sig <- ggplot(experiment_results %>%
                                                x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                                y = haddock_prodigy_deltaG_kcalpermol,
                                                group = cytokine_protein,
-                                               color = cytokine_class_color
+                                               color = n_protein
                                              )
 ) + 
   geom_point() +
@@ -390,7 +393,7 @@ dist_by_haddock_gibbs_line_foldx_sig <- ggplot(experiment_results %>%
                                              x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                              y = haddock_foldx_deltaG_kcalpermol,
                                              group = cytokine_protein,
-                                             color = cytokine_class_color
+                                             color = n_protein
                                            )
 ) + 
   geom_point() +
@@ -432,7 +435,7 @@ dist_by_haddock_vdw_line_sig <- ggplot(experiment_results %>%
                                      x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                      y = haddock_Evdw,
                                      group = cytokine_protein,
-                                     color = cytokine_class_color
+                                     color = n_protein
                                    )
 ) + 
   geom_point() +
@@ -472,7 +475,7 @@ dist_by_af2_gibbs_line_foldx_sig <- ggplot(experiment_results %>%
                                          x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                          y = af2_foldx_dG,
                                          group = cytokine_protein,
-                                         color = cytokine_class_color
+                                         color = n_protein
                                        )
 ) + 
   geom_point() +
@@ -512,7 +515,7 @@ dist_by_af2_gibbs_line_prodigy_sig <- ggplot(experiment_results %>%
                                            x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                            y = af2_prodigy_deltaG_kcalpermol,
                                            group = cytokine_protein,
-                                           color = cytokine_class_color
+                                           color = n_protein
                                          )
 ) + 
   geom_point() +
@@ -551,7 +554,7 @@ dist_by_af2_vdw_line_sig <- ggplot(experiment_results %>%
                                  x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                  y = `af2_Van der Waals`,
                                  group = cytokine_protein,
-                                 color = cytokine_class_color
+                                 color = n_protein
                                )) + 
   geom_point() +
   geom_smooth(method = lm,
