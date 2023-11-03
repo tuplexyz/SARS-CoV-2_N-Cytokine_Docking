@@ -29,9 +29,10 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 
 ### Resources
 
-- Running HADDOCK 2.4 in an HPC environment: [haddock/README.md](haddock/README.md)
 - HADDOCK 2.4 scoring function: https://www.bonvinlab.org/software/haddock2.4/scoring/
 - HADDOCK 2.4 clustering logic: https://www.bonvinlab.org/software/haddock2.4/analysis/#cluster-based-analysis
+- Docker containerized version of HADDOCK, which can be found at: https://github.com/colbyford/haddocker
+- High-Performance Computing submission scripts for both SBATCH and LLMapReduce: [](haddock/submission).
 
 
 ## AlphaFold2 Multimer Analyses
@@ -42,7 +43,11 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 - Best PDBs: [alphafold2_multimer/best_pdbs](alphafold2_multimer/best_pdbs)
 
 
+### Resources
+- The code for AlphaFold-Mulmimer can be found here: https://github.com/google-deepmind/alphafold
 
+
+<!--
 ## Data Explorer App
 
 We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
@@ -50,4 +55,4 @@ We have provided a basic data explorer that allows for the generation of figures
 ```sh
 cd app/
 streamlit run Home.py
-```
+```-->
