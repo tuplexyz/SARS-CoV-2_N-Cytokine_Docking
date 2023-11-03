@@ -1,6 +1,6 @@
-# SARS-CoV-2 Nucleocapsid-Cytokine Docking Analyses
+# Human Cytokine and Coronavirus Nucleocapsid Protein Interactivity Using Large-Scale Virtual Screens
 
-<h3 align="right">MIT Lincoln Lab and Tuple</h3>
+<h3 align="right">Phillip J. Tomezsko, Colby T. Ford, Avery E. Meyer, Adam M. Michaleas, Rafael Jaimes III<br>MIT Lincoln Lab and Tuple</h4>
 
 Large scale, _in silico_ interaction analyses of SARS-CoV-2 nucleocapsid protein variants against human cytokines.
 
@@ -32,7 +32,7 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 - HADDOCK 2.4 scoring function: https://www.bonvinlab.org/software/haddock2.4/scoring/
 - HADDOCK 2.4 clustering logic: https://www.bonvinlab.org/software/haddock2.4/analysis/#cluster-based-analysis
 - Docker containerized version of HADDOCK, which can be found at: https://github.com/colbyford/haddocker
-- High-Performance Computing submission scripts for both SBATCH and LLMapReduce: [](haddock/submission).
+- High-Performance Computing submission scripts for both SBATCH and LLMapReduce: [haddock/submission](haddock/submission).
 
 
 ## AlphaFold2 Multimer Analyses
