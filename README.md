@@ -44,6 +44,7 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 
 
 ### Resources
+- AlphaFold2 Singularity Container: https://github.com/mit-ll/AlphaFold
 - The code for AlphaFold-Mulmimer can be found here: https://github.com/google-deepmind/alphafold
 
 
