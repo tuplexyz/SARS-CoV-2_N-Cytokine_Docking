@@ -115,7 +115,11 @@ experiment_results <- haddock_experiment_results %>%
     wet_hit = case_when(
       wa1_wet_hit ~ "SARS-CoV-2 Wet Hit",
       oc43_wet_hit ~ "HCoV-OC43 Wet Hit",
-      TRUE ~ "Not Wet Hit")
+      TRUE ~ "Not Wet Hit"),
+    wet_hit_symbol = case_when(
+      wa1_wet_hit ~ "†",
+      oc43_wet_hit ~ "‡",
+      TRUE ~ "")
   )
 
 # readr::write_csv(experiment_results, "full_experiment_results.csv")
@@ -349,7 +353,9 @@ sig_had_pro_er <- experiment_results %>%
 
 dist_by_haddock_gibbs_line_prodigy_sig <- ggplot(experiment_results %>%
                                                filter(startsWith(n_protein, "SARS-CoV-2"),
-                                                      cytokine_protein %in% sig_had_pro_er$cytokine_protein),
+                                                      cytokine_protein %in% sig_had_pro_er$cytokine_protein) %>% 
+                                                 mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                                  wet_hit_symbol)),
                                              aes(
                                                x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                                y = haddock_prodigy_deltaG_kcalpermol,
