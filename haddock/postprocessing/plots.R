@@ -394,7 +394,9 @@ sig_had_fol_er <- experiment_results %>%
 
 dist_by_haddock_gibbs_line_foldx_sig <- ggplot(experiment_results %>%
                                              filter(startsWith(n_protein, "SARS-CoV-2"),
-                                                    cytokine_protein %in% sig_had_fol_er$cytokine_protein),
+                                                    cytokine_protein %in% sig_had_fol_er$cytokine_protein) %>% 
+                                               mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                                wet_hit_symbol)),
                                            aes(
                                              x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                              y = haddock_foldx_deltaG_kcalpermol,
@@ -436,7 +438,9 @@ sig_had_vdw_er <- experiment_results %>%
 
 dist_by_haddock_vdw_line_sig <- ggplot(experiment_results %>%
                                      filter(startsWith(n_protein, "SARS-CoV-2"),
-                                            cytokine_protein %in% sig_had_vdw_er$cytokine_protein),
+                                            cytokine_protein %in% sig_had_vdw_er$cytokine_protein) %>% 
+                                       mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                        wet_hit_symbol)),
                                    aes(
                                      x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                      y = haddock_Evdw,
@@ -476,7 +480,9 @@ sig_af2_fol_er <- experiment_results %>%
 
 dist_by_af2_gibbs_line_foldx_sig <- ggplot(experiment_results %>%
                                          filter(startsWith(n_protein, "SARS-CoV-2"),
-                                                cytokine_protein %in% sig_af2_fol_er$cytokine_protein),
+                                                cytokine_protein %in% sig_af2_fol_er$cytokine_protein) %>% 
+                                           mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                            wet_hit_symbol)),
                                        aes(
                                          x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                          y = af2_foldx_dG,
@@ -516,7 +522,9 @@ sig_af2_pro_er <- experiment_results %>%
 
 dist_by_af2_gibbs_line_prodigy_sig <- ggplot(experiment_results %>%
                                            filter(startsWith(n_protein, "SARS-CoV-2"),
-                                                  cytokine_protein %in% sig_af2_pro_er$cytokine_protein),
+                                                  cytokine_protein %in% sig_af2_pro_er$cytokine_protein) %>% 
+                                             mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                              wet_hit_symbol)),
                                          aes(
                                            x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                            y = af2_prodigy_deltaG_kcalpermol,
@@ -555,7 +563,9 @@ sig_af2_vdw_er <- experiment_results %>%
 
 dist_by_af2_vdw_line_sig <- ggplot(experiment_results %>%
                                  filter(startsWith(n_protein, "SARS-CoV-2"),
-                                        cytokine_protein %in% sig_af2_vdw_er$cytokine_protein),
+                                        cytokine_protein %in% sig_af2_vdw_er$cytokine_protein) %>% 
+                                   mutate(cytokine_protein = paste0(cytokine_protein, "   ",
+                                                                    wet_hit_symbol)),
                                aes(
                                  x = `dist_from_SARS-CoV-2-WA1-N_A`,
                                  y = `af2_Van der Waals`,
