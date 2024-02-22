@@ -14,10 +14,10 @@ mamba install networkx pandas matplotlib
 ```  
 
 The following versions of packages were used:  
- *Python 3.11
- *NetworkX 3.1
- *Pandas 2.0.3
- *Matplotlib 3.7.1  
+* Python 3.11  
+* NetworkX 3.1  
+* Pandas 2.0.3  
+* Matplotlib 3.7.1  
 
 By default, the script will perform the analysis and display the figures shown in the manuscript.  
 
