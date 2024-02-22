@@ -1,0 +1,179 @@
+Res #   Interactions
+PRO 80     7   
+GLN 163    17  
+GLY 164    13  
+THR 166    5   
+LEU 219    4   
+LEU 222    8   
+LEU 223    5   
+ARG 226    10  
+ARG 319    19  
+GLY 321    5   
+MET 322    7   
+GLU 323    14  
+VAL 324    14  
+THR 325    10  
+PRO 326    11  
+THR 332    4   
+THR 334    7   
+  Query Chain    |Interacting Chains| Dist | AtomClasses
+PRO    80 A CB   | LYS    24 B CE   | 5.76 |    4   7
+PRO    80 A CB   | HIS    25 B CE1  | 3.77 |    4   5
+PRO    80 A CG   | LYS    24 B CE   | 5.97 |    4   7
+PRO    80 A CG   | HIS    25 B CG   | 4.86 |    4   5
+PRO    80 A CG   | HIS    25 B CD2  | 4.31 |    4   5
+PRO    80 A CG   | HIS    25 B CE1  | 3.16 |    4   5
+PRO    80 A CD   | HIS    25 B CD2  | 5.26 |    7   5
+GLN   163 A C    | LYS    68 B CB   | 5.39 |    6   4
+GLN   163 A CB   | LYS    68 B C    | 6.08 |    4   6
+GLN   163 A CB   | LYS    68 B CB   | 5.84 |    4   4
+GLN   163 A CB   | ARG    69 B CA   | 5.98 |    4   7
+GLN   163 A CB   | ARG    69 B CB   | 5.66 |    4   4
+GLN   163 A CB   | ARG    69 B CG   | 5.67 |    4   4
+GLN   163 A O    | LYS    68 B NZ   | 3.96 |    2   3
+GLN   163 A CG   | ARG    69 B CA   | 6.28 |    4   7
+GLN   163 A CG   | ARG    69 B CG   | 5.36 |    4   4
+GLN   163 A CD   | ARG    69 B CG   | 4.37 |    6   4
+GLN   163 A CD   | ARG    69 B NE   | 4.21 |    6   3
+GLN   163 A NE2  | ARG    69 B CZ   | 3.69 |    3   6
+GLN   163 A OE1  | ARG    69 B N    | 5.48 |    2   3
+GLN   163 A OE1  | ARG    69 B CA   | 5.03 |    2   7
+GLN   163 A OE1  | ARG    69 B CD   | 3.41 |    2   7
+GLN   163 A OE1  | ARG    69 B NE   | 3.91 |    2   3
+GLN   163 A OE1  | ARG    69 B NH1  | 4.13 |    2   3
+GLY   164 A N    | LYS    68 B O    | 5.06 |    3   2
+GLY   164 A N    | MET    72 B SD   | 4.61 |    3   6
+GLY   164 A CA   | LYS    68 B CB   | 5.08 |    7   4
+GLY   164 A CA   | LYS    68 B O    | 5.08 |    7   2
+GLY   164 A CA   | LYS    68 B CG   | 4.9  |    7   4
+GLY   164 A CA   | LYS    68 B CD   | 4.3  |    7   4
+GLY   164 A CA   | MET    72 B CG   | 5.34 |    7   4
+GLY   164 A CA   | MET    72 B SD   | 4.43 |    7   6
+GLY   164 A C    | LYS    68 B NZ   | 4.13 |    6   3
+GLY   164 A C    | MET    72 B SD   | 5.2  |    6   6
+GLY   164 A O    | LYS    68 B CE   | 4.44 |    2   7
+GLY   164 A O    | LYS    68 B NZ   | 3.71 |    2   3
+GLY   164 A O    | MET    72 B SD   | 5.76 |    2   6
+THR   166 A N    | MET    72 B SD   | 5.54 |    3   6
+THR   166 A CA   | MET    72 B CE   | 5.62 |    7   4
+THR   166 A CG2  | MET    72 B CG   | 5.47 |    4   4
+THR   166 A CG2  | MET    72 B SD   | 4.03 |    4   6
+THR   166 A CG2  | MET    72 B CE   | 3.52 |    4   4
+LEU   219 A CG   | LEU    66 B CD1  | 5.55 |    4   4
+LEU   219 A CD1  | LEU    66 B CD1  | 6.2  |    4   4
+LEU   219 A CD2  | LEU    66 B CD1  | 4.71 |    4   4
+LEU   219 A CD2  | LEU    66 B CD2  | 6.19 |    4   4
+LEU   222 A CB   | PHE    70 B CD2  | 6.36 |    4   5
+LEU   222 A CD1  | PHE    70 B CD2  | 5.23 |    4   5
+LEU   222 A CD1  | PHE    70 B CE1  | 6.29 |    4   5
+LEU   222 A CD1  | PHE    70 B CE2  | 4.46 |    4   5
+LEU   222 A CD1  | PHE    70 B CZ   | 5.1  |    4   5
+LEU   222 A CD2  | PHE    70 B CD2  | 5.19 |    4   5
+LEU   222 A CD2  | PHE    70 B CE2  | 4.31 |    4   5
+LEU   222 A CD2  | PHE    70 B CZ   | 5.11 |    4   5
+LEU   223 A CG   | LEU    66 B CD2  | 5.09 |    4   4
+LEU   223 A CD1  | LEU    66 B CD1  | 5.81 |    4   4
+LEU   223 A CD1  | LEU    66 B CD2  | 5.08 |    4   4
+LEU   223 A CD2  | LEU    66 B CD2  | 4.51 |    4   4
+LEU   223 A CD2  | ARG    69 B CZ   | 6.2  |    4   6
+ARG   226 A CB   | ARG    69 B CZ   | 5.85 |    4   6
+ARG   226 A O    | ARG    69 B NH2  | 5.77 |    2   3
+ARG   226 A CG   | ARG    69 B CD   | 6.3  |    4   7
+ARG   226 A CG   | ARG    69 B CZ   | 5.29 |    4   6
+ARG   226 A NH1  | ARG    69 B O    | 5.82 |    3   2
+ARG   226 A NH1  | PHE    70 B CD2  | 5.55 |    3   5
+ARG   226 A NH1  | PHE    70 B CE2  | 5.38 |    3   5
+ARG   226 A NH2  | ARG    69 B O    | 5.05 |    3   2
+ARG   226 A NH2  | MET    72 B O    | 5.34 |    3   2
+ARG   226 A CZ   | ARG    69 B O    | 5.61 |    6   2
+ARG   319 A CA   | PRO    32 B CB   | 5.44 |    7   4
+ARG   319 A CA   | PRO    32 B CG   | 4.16 |    7   4
+ARG   319 A C    | PRO    32 B CG   | 4.28 |    6   4
+ARG   319 A CB   | PRO    32 B CG   | 3.59 |    4   4
+ARG   319 A CB   | PRO    32 B CD   | 4.23 |    4   7
+ARG   319 A O    | PRO    32 B CD   | 4.61 |    2   7
+ARG   319 A CG   | PRO    32 B CB   | 5.09 |    4   4
+ARG   319 A CG   | PRO    32 B CG   | 3.95 |    4   4
+ARG   319 A CD   | PRO    32 B CG   | 4.38 |    7   4
+ARG   319 A CD   | ASN    33 B CB   | 5.96 |    7   4
+ARG   319 A NH1  | PRO    32 B C    | 3.5  |    3   6
+ARG   319 A NH1  | PRO    32 B O    | 3.3  |    3   2
+ARG   319 A NH1  | ASN    33 B CG   | 3.31 |    3   6
+ARG   319 A NH1  | ASN    33 B OD1  | 2.82 |    3   2
+ARG   319 A NH2  | PRO    32 B O    | 5.0  |    3   2
+ARG   319 A NH2  | ASN    33 B OD1  | 2.83 |    3   2
+ARG   319 A CZ   | ASN    33 B CG   | 3.65 |    6   6
+ARG   319 A CZ   | ASN    33 B ND2  | 3.84 |    6   3
+ARG   319 A CZ   | ASN    33 B OD1  | 3.15 |    6   2
+GLY   321 A N    | ASN    30 B O    | 4.79 |    3   2
+GLY   321 A CA   | ASN    30 B O    | 3.83 |    7   2
+GLY   321 A CA   | ASN    30 B CG   | 5.07 |    7   6
+GLY   321 A CA   | ASN    30 B OD1  | 5.65 |    7   2
+GLY   321 A C    | ASN    30 B O    | 4.57 |    6   2
+MET   322 A N    | ASN    30 B O    | 4.54 |    3   2
+MET   322 A N    | ASN    30 B CG   | 4.45 |    3   6
+MET   322 A C    | ASN    30 B N    | 5.14 |    6   3
+MET   322 A C    | ASN    30 B CB   | 3.93 |    6   4
+MET   322 A C    | ASN    30 B O    | 5.24 |    6   2
+MET   322 A O    | ASN    30 B N    | 4.55 |    2   3
+MET   322 A O    | ASN    30 B ND2  | 3.35 |    2   3
+GLU   323 A CA   | ILE    28 B O    | 3.25 |    7   2
+GLU   323 A CB   | LEU    29 B CA   | 5.13 |    4   7
+GLU   323 A CD   | ILE    28 B O    | 3.47 |    6   2
+GLU   323 A CD   | LEU    29 B CA   | 4.5  |    6   7
+GLU   323 A CD   | LEU    29 B CD2  | 4.41 |    6   4
+GLU   323 A OE1  | LYS    27 B CA   | 3.87 |    2   7
+GLU   323 A OE1  | LYS    27 B C    | 3.5  |    2   6
+GLU   323 A OE1  | LYS    27 B CE   | 3.21 |    2   7
+GLU   323 A OE1  | ILE    28 B N    | 3.1  |    2   3
+GLU   323 A OE1  | ILE    28 B C    | 3.23 |    2   6
+GLU   323 A OE1  | LEU    29 B N    | 3.55 |    2   3
+GLU   323 A OE1  | LEU    29 B CA   | 4.01 |    2   7
+GLU   323 A OE2  | LYS    27 B CE   | 3.42 |    2   7
+GLU   323 A OE2  | LEU    29 B CA   | 5.0  |    2   7
+VAL   324 A N    | ILE    28 B O    | 4.09 |    3   2
+VAL   324 A CB   | ILE    28 B CB   | 4.74 |    4   4
+VAL   324 A CB   | ILE    28 B CG2  | 5.15 |    4   4
+VAL   324 A CB   | ILE    28 B CD1  | 4.02 |    4   4
+VAL   324 A CB   | LEU    62 B CD2  | 5.99 |    4   4
+VAL   324 A O    | LYS    27 B CA   | 4.85 |    2   7
+VAL   324 A O    | ILE    28 B N    | 3.67 |    2   3
+VAL   324 A CG1  | ILE    28 B CD1  | 4.52 |    4   4
+VAL   324 A CG1  | TYR    61 B CE1  | 6.18 |    4   5
+VAL   324 A CG1  | LEU    62 B CD2  | 6.23 |    4   4
+VAL   324 A CG1  | ALA    65 B CB   | 5.47 |    4   4
+VAL   324 A CG2  | ILE    28 B CG2  | 5.71 |    4   4
+VAL   324 A CG2  | ILE    28 B CD1  | 5.09 |    4   4
+VAL   324 A CG2  | LEU    62 B CD2  | 6.37 |    4   4
+THR   325 A CA   | LEU    26 B O    | 4.26 |    7   2
+THR   325 A C    | LEU    26 B O    | 4.88 |    6   2
+THR   325 A C    | TYR    61 B OH   | 5.77 |    6   1
+THR   325 A CB   | LEU    26 B O    | 4.6  |    6   2
+THR   325 A CB   | LYS    27 B CB   | 6.15 |    6   4
+THR   325 A CG2  | LYS    27 B CA   | 5.07 |    4   7
+THR   325 A CG2  | LYS    27 B CB   | 5.55 |    4   4
+THR   325 A CG2  | LYS    27 B CG   | 5.1  |    4   4
+THR   325 A CG2  | LYS    27 B CD   | 6.07 |    4   4
+THR   325 A CG2  | LYS    27 B CE   | 5.92 |    4   7
+PRO   326 A N    | TYR    61 B OH   | 5.4  |    3   1
+PRO   326 A CA   | TYR    61 B OH   | 5.26 |    7   1
+PRO   326 A CB   | HIS    25 B CE1  | 4.1  |    4   5
+PRO   326 A CG   | HIS    25 B CA   | 5.28 |    4   7
+PRO   326 A CG   | HIS    25 B CG   | 4.48 |    4   5
+PRO   326 A CG   | HIS    25 B CD2  | 4.2  |    4   5
+PRO   326 A CG   | HIS    25 B CE1  | 3.85 |    4   5
+PRO   326 A CG   | LEU    26 B CB   | 5.31 |    4   4
+PRO   326 A CD   | HIS    25 B CD2  | 4.62 |    7   5
+PRO   326 A CD   | LEU    26 B O    | 3.45 |    7   2
+PRO   326 A CD   | TYR    61 B OH   | 5.48 |    7   1
+THR   332 A CG2  | LEU    29 B CD2  | 6.12 |    4   4
+THR   332 A OG1  | ASN    30 B N    | 5.54 |    1   3
+THR   332 A OG1  | ASN    30 B O    | 4.23 |    1   2
+THR   332 A OG1  | THR    31 B CA   | 6.1  |    1   7
+THR   334 A CB   | TYR     7 B CD1  | 5.94 |    6   5
+THR   334 A CG2  | TYR     7 B CD1  | 4.91 |    4   5
+THR   334 A CG2  | TYR     7 B CE1  | 4.02 |    4   5
+THR   334 A CG2  | TYR     7 B CE2  | 5.35 |    4   5
+THR   334 A CG2  | TYR     7 B CZ   | 4.29 |    4   5
+THR   334 A OG1  | TYR     7 B CD1  | 6.06 |    1   5
+THR   334 A OG1  | TYR     7 B CE1  | 5.41 |    1   5
