@@ -195,7 +195,7 @@ TIMEOUT=4
 #TIMEOUT=20
 VARIABLES='res_nums'
 
-# %%
+# %% Calculate all the GEDs for the AlphaFold2 INTERCAAT results
 analysis_dir = 'CXCL12beta_analysis/AF2_INTERCAAT/'
 file1 = 'SARS-CoV-2-WA1-N_CXCL12beta_relaxed_model_2_multimer_v3_pred_2.pdb_intercaat.txt'
 
@@ -233,7 +233,7 @@ af2_geds.set_index('n_protein', inplace=True)
 af2_geds.sort_values(by='n_protein', ascending=True, inplace=True)
 
 
-# %%
+# %% Calculate all the GEDs for the HADDOCK INTERCAAT results
 analysis_dir = 'CXCL12beta_analysis/HADDOCK_INTERCAAT/'
 
 # Best File = SARS-CoV-2-BA.1.1-N_CXCL11_model_4_multimer_v3_pred_4
@@ -386,7 +386,7 @@ fig.tight_layout(h_pad=3)
 fig.savefig('GED_4panel.pdf')
 
 
-# %% Bipartite
+# %% Bipartite Example
 
 analysis_dir = 'CXCL12beta_analysis/HADDOCK_INTERCAAT/'
 file1 = 'SARS-CoV-2-WA1-N__CXCL12beta_165w.pdb_intercaat.txt'
