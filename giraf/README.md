@@ -31,7 +31,7 @@ Here's an example:
 OC43 is longer than the other coronaviruses so it sets the stage at the beginning. Residue #8 is equivalent to Residue #1 for BANAL-20-52 and SARS-CoV-2, and so on.  
 Where the residue is missing, there is a "nan". The N proteins are much longer than this, but this just shows the beginning of the alignment.  
 
-![qownnotes-media-aHOKgs](../media/qownnotes-media-aHOKgs.png)  
+![Lookup Table](lut.png)  
 
 The table shown will be saved as a LUT automatically and will be used in the following way:  
 If GIRAF sees an interaction on BANAL-20-52 on residue #4 it will know to renumber it as residue #11 (consensus), and so on.  
