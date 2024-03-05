@@ -8,8 +8,14 @@ Preprint: https://www.biorxiv.org/content/10.1101/2023.11.28.569056
 
 ![](/img/Experiments.png)
 
+## About This Repository
+In this repository, you'll find both the HADDOCK and AlphaFold2-Multimer results presented in the above paper. Plus, we have included the logic for preparing the various experiments and submitting them to an high-performance computing (HPC) environment.
 
-## HADDOCK 2.4 Analyses
+- Full Results CSV: [full_experiment_results.csv](full_experiment_results.csv)
+- GIRAF Code: [giraf/](giraf/)
+
+
+### HADDOCK 2.4 Analyses
 
 HADDOCK 2.4 was run on to dock the 1,088 combinations of 64 human cytokines × 17 N proteins. We refer to these combinations as "experiments".
 
@@ -25,12 +31,12 @@ In the final water refinement step, the HADDOCK system will cluster the complexe
 From these cluster-level metrics, we select the best cluster based on the lowest _van der Waals_ energy. Then, from this best cluster, we select the best (representative) PDB file as the one with the lowest _van der Waals_ energy.
 
 
-### Results
+#### Results
 
 - Experiment Results: [haddock/postprocessing/experiment_results.csv](haddock/postprocessing/experiment_results.csv)
 - Best PDBs: [haddock/postprocessing/best_pdbs/](haddock/postprocessing/best_pdbs/)
 
-### Resources
+#### Resources
 
 - HADDOCK 2.4 scoring function: https://www.bonvinlab.org/software/haddock2.4/scoring/
 - HADDOCK 2.4 clustering logic: https://www.bonvinlab.org/software/haddock2.4/analysis/#cluster-based-analysis
@@ -38,20 +44,20 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 - High-Performance Computing submission scripts for both SBATCH and LLMapReduce: [haddock/submission](haddock/submission).
 
 
-## AlphaFold2 Multimer Analyses
+### AlphaFold2 Multimer Analyses
 
-### Results
+#### Results
 
 - Experiment Results: [alphafold2_multimer/AF23_experiment_results.csv](alphafold2_multimer/AF23_experiment_results.csv)
 - Best PDBs: [alphafold2_multimer/best_pdbs](alphafold2_multimer/best_pdbs)
 
 
-### Resources
+#### Resources
 - AlphaFold2 Singularity Container: https://github.com/mit-ll/AlphaFold
 - The code for AlphaFold-Mulmimer can be found here: https://github.com/google-deepmind/alphafold
 
 
-## Data Explorer App
+### Data Explorer App
 
 We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
 
@@ -63,8 +69,7 @@ streamlit run Protein_Viewer.py
 
 via Docker:
 ```sh
-cd vis_app/
-docker build -t n_cyto_app .
+docker build -t n_cyto_app -f vis_app/Dockerfile .
 docker run -p 8501:8501 n_cyto_app
 ```
 
