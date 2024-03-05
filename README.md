@@ -64,13 +64,18 @@ We have provided a basic data explorer that allows for the generation of figures
 via Python (Terminal or Command Prompt):
 ```sh
 cd vis_app/
+# python -m pip install -r requirements.txt
 streamlit run Protein_Viewer.py
 ```
 
 via Docker:
 ```sh
 docker build -t n_cyto_app -f vis_app/Dockerfile .
-docker run -p 8501:8501 n_cyto_app
+docker run -p 8501:8501 --name n_cyto_app -d n_cyto_app
+
+## To run in an interactive shell:
+# docker run --rm -it --entrypoint bash n_cyto_app
+# docker exec -it n_cyto_app /bin/bash
 ```
 
 Then, navigate to `http://localhost:8501` in your web browser.
