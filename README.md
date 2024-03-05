@@ -51,12 +51,21 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 - The code for AlphaFold-Mulmimer can be found here: https://github.com/google-deepmind/alphafold
 
 
-<!--
 ## Data Explorer App
 
 We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
 
+via Python (Terminal or Command Prompt):
 ```sh
-cd app/
-streamlit run Home.py
-```-->
+cd vis_app/
+streamlit run Protein_Viewer.py
+```
+
+via Docker:
+```sh
+cd vis_app/
+docker build -t n_cyto_app .
+docker run -p 8501:8501 n_cyto_app
+```
+
+Then, navigate to `http://localhost:8501` in your web browser.

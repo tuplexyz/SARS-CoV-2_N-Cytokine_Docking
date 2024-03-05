@@ -15,7 +15,7 @@ st.set_page_config(
 
 @st.cache_data
 def load_haddock_data():
-    data = pd.read_csv("../postprocessing/experiment_results.csv")
+    data = pd.read_csv("../full_experiment_results.csv")
     return data
 
 st.title('SARS-CoV-2 Nucleocapsid-Cytokine Docking Analyses')
@@ -29,28 +29,18 @@ haddock_data = load_haddock_data()
 n_proteins = haddock_data.n_protein.sort_values().unique().tolist()
 cytokine_proteins = haddock_data.cytokine_protein.sort_values().unique().tolist()
 haddock_metrics = [
-    "Evdw+0.1Eelec",
-    # "Evdw+0.1Eelec_sd",
-    "Evdw",
-    # "Evdw_sd",
-    "Eelec",
-    # "Eelec_sd",
-    "Eair",
-    # "Eair_sd",
-    "Edesolv",
-    # "Edesolv_sd",
-    "AIRviol",
-    # "AIRviol_sd",
-    # "dihedviol",
-    # "dihedviol_sd",
-    "BSA",
-    # "BSA_sd",
+    "haddock_Evdw+0.1Eelec",
+    "haddock_Evdw",
+    "haddock_Eelec",
+    "haddock_Eair",
+    "haddock_Edesolv",
+    "haddock_AIRviol",
+    "haddock_BSA",
     "haddock-score",
-    # "haddock-score_sd",
-    "prodigy_deltaG_kcalpermol",
-    "prodigy_dissociation_constant_M"
+    "haddock_prodigy_deltaG_kcalpermol",
+    "haddock_prodigy_dissociation_constant_M"
 ]
-best_pdbs = os.listdir("../postprocessing/best_pdbs")
+# best_pdbs = os.listdir("../haddock/postprocessing/best_pdbs")
 
 ## Update text element message
 data_load_state.text('✔ HADDOCK results loaded.')
@@ -101,7 +91,8 @@ if "Boxplot" in plot_selection:
         color = category_selection,
         points = "all",
         title = f"Boxplot: {metric_selection} by {slice_by_selection}"
-    )
+    ).update_xaxes(categoryorder = "median ascending")
+
     plt_haddock_boxplot.update_layout(showlegend=False,
                                       height=800)
 

@@ -3,3 +3,5 @@ plotly-express
 py3Dmol==2.0.0.post2
 stmol==0.0.9
 streamlit-aggrid
+ipython_genutils
+streamlit_js_eval
