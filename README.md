@@ -17,14 +17,14 @@ In this repository, you'll find both the HADDOCK and AlphaFold2-Multimer results
 
 ### HADDOCK 2.4 Analyses
 
-HADDOCK 2.4 was run on to dock the 1,088 combinations of 64 human cytokines × 17 N proteins. We refer to these combinations as "experiments".
+HADDOCK 2.4 was run to dock 1,088 combinations of 64 human cytokines × 17 N proteins. We refer to these combinations as "experiments".
 
 Ambiguous Interaction Restraints (AIRs) were defined using a random selection of 20% of the surface residues on the input proteins. This was to reduce our input bias surrounding the docking site while reducing computation time.
 
 HADDOCK generates 200 PDB complexes for each experiment in each of its three iterations:
-1. Rigid body docking (it0)
-2. Semi-flexible refinement (it1)
-3. Solvent refinement in water (itw)
+1. Rigid body docking ($it_0$)
+2. Semi-flexible refinement ($it_1$)
+3. Solvent refinement in water ($it_w$)
 
 In the final water refinement step, the HADDOCK system will cluster the complexes and generate cluster-level metrics.
 
@@ -45,6 +45,8 @@ From these cluster-level metrics, we select the best cluster based on the lowest
 
 
 ### AlphaFold2 Multimer Analyses
+
+AlphaFold2-Multimer was also run to dock the same 1,088 "experiments" (combinations of 64 human cytokines × 17 N proteins).
 
 #### Results
 
@@ -78,4 +80,6 @@ docker run -p 8501:8501 --name n_cyto_app -d n_cyto_app
 # docker exec -it n_cyto_app /bin/bash
 ```
 
-Then, navigate to `http://localhost:8501` in your web browser.
+Then, navigate to [`http://localhost:8501`](http://localhost:8501) in your web browser.
+
+![vis_app](img/vis_app.png)
