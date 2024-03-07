@@ -64,14 +64,14 @@ AlphaFold2-Multimer was also run to dock the same 1,088 "experiments" (combinati
 We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
 
 via Python (Terminal or Command Prompt):
-```sh
+```bash
 cd vis_app/
 # python -m pip install -r requirements.txt
 streamlit run Protein_Viewer.py
 ```
 
 via Docker:
-```sh
+```bash
 docker build -t n_cyto_app -f vis_app/Dockerfile .
 docker run -p 8501:8501 --name n_cyto_app -d n_cyto_app
 
