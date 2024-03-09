@@ -61,7 +61,7 @@ AlphaFold2-Multimer was also run to dock the same 1,088 "experiments" (combinati
 
 ### Data Explorer App
 
-We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, run the following commands:
+We have provided a basic data explorer that allows for the generation of figures and the viewing of the PDB complexes. This application is written in Streamlit. To run the application locally, use the following commands:
 
 via Python (Terminal or Command Prompt):
 ```bash
