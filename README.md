@@ -6,7 +6,7 @@ Large scale, _in silico_ interaction analyses of SARS-CoV-2 nucleocapsid protein
 
 <!--Preprint: https://www.biorxiv.org/content/10.1101/2023.11.28.569056 -->
 
-[![Journal Article](https://img.shields.io/badge/Frontiers_in_Bioinformatics-10.3389/fbinf.2024.1397968-6657d4?style=for-the-badge&logo=read.cv)](https://www.frontiersin.org/articles/10.3389/fbinf.2024.1397968/abstract)
+[![Journal Article](https://img.shields.io/badge/Frontiers_in_Bioinformatics-10.3389/fbinf.2024.1397968-6657d4?style=for-the-badge&logo=read.cv)](https://www.frontiersin.org/articles/10.3389/fbinf.2024.1397968/full)
 
 
 
