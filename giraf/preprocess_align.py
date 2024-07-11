@@ -9,8 +9,11 @@ pd.options.mode.chained_assignment = None
 
 def make_lut(filename='BetaCoV-N-MSA.txt'):
     """
-    Preprocessing step. Takes an MSA file from Geneious in and remaps
-    the INTERCAAT files using the Consensus sequence.
+    Preprocessing step. Takes an MSA file from Geneious in and remaps it 
+    into a clean look-up table (lut) which can be exported as a CSV.
+    
+    The CSV can later be used in the main GIRAF routine to map INTERCAAT 
+    files against the Consensus sequence.
 
     @author: raflocal
     @date: 2023-10-13
